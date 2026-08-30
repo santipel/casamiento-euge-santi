@@ -896,40 +896,16 @@
        3) Volvé a "Implementar > Nueva implementación" (o "Administrar
           implementaciones > Editar") para que el cambio quede publicado.
        4) Pegá esa misma URL (termina en /exec) en INVITADOS_ENDPOINT.
-     Si INVITADOS_ENDPOINT queda vacío (""), se usa INVITADOS_FALLBACK
-     tal cual. Si está completo, la página lo trae apenas carga, arma la
+     Si INVITADOS_ENDPOINT queda vacío (""), la búsqueda de invitados no
+     va a poder mostrar resultados. La base de invitados vive únicamente
+     en el Google Sheet — nunca queda una copia de nombres en este archivo.
+     Si está completo, la página lo trae apenas carga, arma la
      base actualizada y la guarda en caché local (localStorage) por si en
      la próxima visita no hay conexión — así siempre queda una copia usable.
      ============================================================ */
   // Poné acá la URL de tu Web App de Apps Script (la misma que RSVP_ENDPOINT,
-  // si el doGet vive en el mismo proyecto). Dejala vacía ("") para usar
-  // solo la lista fija de INVITADOS_FALLBACK.
+  // si el doGet vive en el mismo proyecto).
   const INVITADOS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
-
-  // Fila = { titular, invitado, civil, casamiento, esPlusUno }
-  // "titular" agrupa: todas las filas con el mismo "Invitado Titular" se muestran juntas.
-  const INVITADOS_FALLBACK = [
-    { titular:"Gustavo Medone",               invitado:"Gustavo Medone",               civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Sandra Novello",                invitado:"Sandra Novello",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Inés Medone",                   invitado:"Inés Medone",                   civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Inés Medone",                   invitado:"Matías Rosenberg",               civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Agustina Medone",                invitado:"Agustina Medone",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Agustina Medone",                invitado:"Fausto Borghiani",               civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Gabriela Quian",                 invitado:"Gabriela Quian",                 civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Gabriela Quian",                 invitado:"Eduardo Machin",                 civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Fernando Pelaez",                invitado:"Fernando Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Fernando Pelaez",                invitado:"Gabriela Grobocopatel",          civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Josefina Pelaez",                invitado:"Josefina Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Josefina Pelaez",                invitado:"Martin Mazueli",                 civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Fernando (H) Pelaez",             invitado:"Fernando (H) Pelaez",             civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Francisco Pelaez",                invitado:"Francisco Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Francisco Pelaez",                invitado:"Evelin",                         civil:true,  casamiento:true,  esPlusUno:true  },
-    { titular:"Nestor Novello",                  invitado:"Nestor Novello",                  civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Angelica Novelli",                invitado:"Angelica Novelli",                civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Beatriz Failacce",                invitado:"Beatriz Failacce",                civil:false, casamiento:true,  esPlusUno:false },
-    { titular:"Sara Luisa Camila Vallejo",       invitado:"Sara Luisa Camila Vallejo",       civil:true,  casamiento:true,  esPlusUno:false },
-    { titular:"Gaston Medone",                   invitado:"Gaston Medone",                   civil:true,  casamiento:true,  esPlusUno:false },
-  ];
 
   /* Datos de los eventos (editá horarios/lugares) */
   const EVENTOS = {
@@ -969,13 +945,19 @@
         return key ? obj[key] : '';
       };
       const yes = v => /^s/i.test(String(v||'').trim());
-      return rawRows.map(r => ({
-        titular: String(col(r,'Invitado Titular')||'').trim(),
-        invitado: String(col(r,'Invitado')||'').trim(),
-        civil: yes(col(r,'Civil')),
-        casamiento: yes(col(r,'Casamiento')),
-        esPlusUno: yes(col(r,'Es +1')),
-      })).filter(r=>r.invitado && r.titular);
+      return rawRows.map(r => {
+        const casamientoRaw = String(col(r,'Casamiento')||'').trim();
+        return {
+          titular: String(col(r,'Invitado Titular')||'').trim(),
+          invitado: String(col(r,'Invitado')||'').trim(),
+          civil: yes(col(r,'Civil')),
+          casamiento: yes(casamientoRaw),
+          esPlusUno: yes(col(r,'Es +1')),
+          _casamientoRaw: casamientoRaw,
+        };
+      // "Post-12" en la columna Casamiento = todavía no se le manda invitación
+      // a esa persona, así que no debe aparecer en el buscador de RSVP.
+      }).filter(r=>r.invitado && r.titular && norm(r._casamientoRaw) !== norm('Post-12'));
     }
 
     function loadCache(){
@@ -990,9 +972,10 @@
       try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts:Date.now(), groups })); }catch(e){}
     }
 
-    // Al abrir: usamos caché (si hay) o la lista fija, y en paralelo
-    // intentamos traer la versión más nueva desde tu Apps Script (si está configurado).
-    let GRUPOS = loadCache() || buildGroups(INVITADOS_FALLBACK);
+    // Al abrir: usamos caché (si hay) mientras llega la versión más nueva
+    // desde tu Apps Script. Si todavía no hay caché ni respuesta, arrancamos
+    // con la lista vacía (nunca hay nombres reales guardados en este archivo).
+    let GRUPOS = loadCache() || buildGroups([]);
 
     function refreshFromSheet(){
       if(!INVITADOS_ENDPOINT) return;
@@ -1010,7 +993,7 @@
             saveCache(GRUPOS);
             console.info('[invitados] Base actualizada desde Google Sheets: ' + rows.length + ' filas, ' + GRUPOS.length + ' grupos.');
           } else {
-            console.warn('[invitados] La respuesta llegó bien pero no tiene filas usables. Seguimos con la lista de respaldo.');
+            console.warn('[invitados] La respuesta llegó bien pero no tiene filas usables. Seguimos con lo que hubiera en caché.');
           }
         })
         .catch(err => {
@@ -1018,7 +1001,7 @@
           // - "Failed to fetch" -> problema de red o de CORS en el deployment.
           // - "HTTP 401/403" -> el deployment no está en "Cualquier usuario".
           // - "Unexpected token '<'" -> el endpoint devolvió HTML (login de Google) en vez de JSON.
-          console.warn('[invitados] No se pudo traer la lista desde Apps Script, seguimos con la lista de respaldo/caché.', err);
+          console.warn('[invitados] No se pudo traer la lista desde Apps Script, seguimos con lo que hubiera en caché.', err);
         });
     }
     refreshFromSheet();
