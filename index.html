@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euge & Santi · 7 de diciembre de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bordo:#64130E;
+    --bordo-tinta:#3D0F0C;
+    --crema:#F5EFD8;
+    --crema-claro:#FBF7E9;
+    --crema-papel:#FEFCEF;
+    --rosa:#8C4A43;
+    --rosa-suave:#E3C9C4;
+    --linea:rgba(100,19,14,.18);
+    --ok:#4B7A5A;
+    --no:#B25548;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:'Josefin Sans',sans-serif;
+    color:var(--bordo-tinta);
+    background:var(--crema);
+    line-height:1.7;
+    font-weight:300;
+    letter-spacing:.02em;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-weight:400;line-height:1.1}
+  .script{font-family:'Caveat',cursive;font-weight:700}
+  .serif{font-family:'Cormorant',serif}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,239,216,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:center;
+    gap:clamp(14px,3vw,42px);
+    padding:14px 20px;
+    flex-wrap:wrap;
+  }
+  nav a{
+    color:var(--bordo);text-decoration:none;
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.22em;
+    font-weight:400;padding:4px 2px;position:relative;transition:opacity .2s;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;
+    background:var(--bordo);transition:width .25s ease;
+  }
+  nav a:hover::after,nav a:focus-visible::after{width:100%}
+  nav a:focus-visible{outline:2px solid var(--bordo);outline-offset:3px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:60px 24px 40px;position:relative;
+    background:
+      radial-gradient(120% 80% at 50% -10%, var(--crema-papel), transparent 60%),
+      var(--crema);
+  }
+  .hero .eyebrow{
+    font-family:'Caveat',cursive;font-weight:700;text-transform:none;letter-spacing:0;
+    font-size:clamp(4.2rem,16vw,9rem);line-height:.9;
+    color:var(--bordo);margin-bottom:6px;padding-left:0;
+  }
+  .hero-logo{
+    width:clamp(150px,26vw,230px);height:auto;margin-bottom:6px;
+    animation:floatIn 1.2s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.hero-logo{animation:none}}
+  .hero h1{
+    font-family:'Caveat',cursive;font-weight:700;
+    font-size:clamp(4.2rem,16vw,9rem);
+    color:var(--bordo);line-height:.9;margin:.1em 0 .05em;
+  }
+  .hero h1 .amp{font-family:'Cormorant',serif;font-style:italic;font-weight:400;font-size:.62em;vertical-align:.04em}
+  .hero .fullnames{
+    font-family:'Cormorant',serif;font-style:italic;
+    font-size:clamp(1rem,3.6vw,1.5rem);color:var(--bordo-tinta);
+    letter-spacing:.04em;margin-bottom:26px;opacity:.85;
+  }
+  .hero .datestrip{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    font-family:'Cormorant',serif;font-weight:600;
+    font-size:clamp(1.3rem,4.2vw,1.9rem);letter-spacing:.28em;
+    text-transform:uppercase;color:var(--bordo);
+    margin-top:4px;margin-right:-.28em;
+  }
+  .hero .datestrip span{white-space:nowrap}
+  .hero .datestrip .dot{width:6px;height:6px;border-radius:50%;background:var(--rosa);flex:none}
+  @media(max-width:440px){
+    .hero .datestrip{gap:12px;letter-spacing:.16em;font-size:1.2rem;margin-right:-.16em}
+  }
+  .hero .place{margin-top:14px;font-size:clamp(1rem,2.6vw,1.2rem);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--bordo);margin-right:-.18em}
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown{
+    display:flex;justify-content:center;gap:clamp(18px,5vw,54px);
+    margin-top:44px;flex-wrap:wrap;
+  }
+  .cd-unit{text-align:center;min-width:56px}
+  .cd-num{
+    font-family:'Cormorant',serif;font-weight:500;
+    font-size:clamp(2.1rem,7vw,3.4rem);color:var(--bordo);line-height:1;
+  }
+  .cd-lbl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.28em;color:var(--rosa);margin-top:8px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(70px,11vw,130px) 24px}
+  .wrap{max-width:820px;margin:0 auto}
+  .wrap-wide{max-width:1080px;margin:0 auto}
+  .section-eyebrow{
+    text-align:center;font-size:.8rem;font-weight:600;text-transform:uppercase;
+    letter-spacing:.34em;color:var(--rosa);margin-bottom:14px;padding-left:.34em;
+  }
+  .section-title{
+    text-align:center;font-family:'Caveat',cursive;font-weight:700;
+    font-size:clamp(2.6rem,8vw,4.4rem);color:var(--bordo);
+    margin-bottom:clamp(30px,6vw,60px);line-height:.95;
+  }
+  .alt{background:var(--crema-claro)}
+  .paper{background:var(--crema-papel)}
+
+  /* ---------- HISTORIA (ilustración de fondo + fotos ancladas a cada escena) ---------- */
+  .story-intro{
+    text-align:center;font-family:'Cormorant',serif;font-style:italic;
+    font-size:clamp(1.15rem,3vw,1.45rem);color:var(--bordo);line-height:1.5;
+    max-width:640px;margin:-18px auto clamp(30px,5vw,50px);
+  }
+  /* Cada escena es una fila (ilustración + foto/texto); el alto lo da el propio contenido,
+     así ninguna escena queda desalineada respecto de las demás. */
+  .story-canvas{max-width:980px;margin:0 auto;display:flex;flex-direction:column}
+  .story-row{
+    display:flex;align-items:center;
+    gap:clamp(20px,5vw,48px);
+    /* El HTML trae primero el texto/foto y después la ilustración (así el orden
+       en mobile sale natural, sin depender de "order"); en desktop usamos
+       row-reverse para que la ilustración quede a la IZQUIERDA por defecto. */
+    flex-direction:row-reverse;
+  }
+  .story-row.reverse{flex-direction:row}
+  .story-row .story-illus{flex:1 1 42%;max-width:42%;pointer-events:none}
+  .story-row .story-illus img{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 18px rgba(100,19,14,.12))}
+
+  /* Curva que une una escena con la siguiente: sale del borde de la ilustración de arriba
+     y llega al borde de la de abajo (solo conecta escenas consecutivas, nunca todas entre sí) */
+  .story-connector{width:100%}
+  .story-connector svg{width:100%;height:auto;display:block}
+  .story-connector path{fill:none;stroke:var(--bordo);stroke-width:1.4;stroke-linecap:round}
+
+  .st-node{flex:1 1 55%;max-width:55%;display:flex;flex-direction:column}
+  /* Marco de la foto con proporción 4:3 garantizada en CUALQUIER navegador
+     (técnica del padding-bottom en vez de aspect-ratio, que en iOS viejos
+     no anda y hacía que la foto se saliera del marco). */
+  .st-node .st-photo{
+    position:relative;margin:0;width:100%;padding-bottom:75%;height:0;overflow:visible;
+  }
+  .st-node .st-photo-inner{
+    position:absolute;top:0;right:0;bottom:0;left:0;
+    border:2px solid var(--bordo);
+    padding:9px;background:var(--crema-papel);
+    box-shadow:0 12px 26px rgba(100,19,14,.14);
+  }
+  .st-node .st-photo-inner::before{
+    content:"";position:absolute;top:9px;right:9px;bottom:9px;left:9px;border:4px solid var(--bordo);z-index:2;pointer-events:none;
+  }
+  .st-node .st-photo-inner img{
+    position:relative;width:100%;height:100%;object-fit:cover;display:block;z-index:1;
+    transition:transform .55s ease;
+  }
+  .st-node .st-photo-inner .st-ph{
+    position:absolute;top:9px;right:9px;bottom:9px;left:9px;z-index:1;
+  }
+  .st-node .st-text{margin-bottom:14px;text-align:right}
+  .story-row.reverse .st-text{text-align:left}
+
+  .st-ph{
+    position:absolute;top:9px;right:9px;bottom:9px;left:9px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:9px;text-align:center;padding:14px;
+  }
+  .st-ph svg{width:34px;height:34px;color:var(--bordo);opacity:.45}
+  .st-ph .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--rosa)}
+  .st-ph .sub{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.02em;color:var(--rosa-suave)}
+  /* La fecha usa ahora la tipografía que antes era del título (h3) */
+  .st-node .st-eyebrow{
+    font-family:'Cormorant',serif;font-weight:600;font-style:normal;
+    font-size:clamp(1.1rem,2.4vw,1.6rem);
+    text-transform:none;letter-spacing:0;
+    color:var(--bordo);line-height:1.15;
+  }
+
+  /* En pantallas medianas/chicas: cada fila se apila (texto, foto, y la ilustración
+     al final) — el orden sale directo del HTML (sin depender de "order" de flexbox,
+     que algunos navegadores/lectores no respetan), así queda a prueba de balas. */
+  @media(max-width:820px){
+    /* align-items:center (pensado para el layout de escritorio, para centrar
+       verticalmente foto+texto junto al dibujo) hace que en columna el bloque
+       se encoja a su ancho de contenido y quede centrado con espacio vacío
+       a los costados. Con "stretch" ocupa todo el ancho disponible. */
+    .story-row,.story-row.reverse{flex-direction:column;align-items:stretch;gap:clamp(10px,3.5vw,20px)}
+    .story-row .story-illus{
+      max-width:clamp(140px,42vw,200px);margin:4px auto 0;
+    }
+    .story-row .story-illus img{width:100%;height:auto;max-width:100%;display:block}
+    .st-node{max-width:100%;width:100%}
+    .st-node .st-text{text-align:left !important}
+    .story-connector{display:none}
+  }
+
+  /* ---------- DETALLES / CARDS ---------- */
+  .cards{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:clamp(18px,3vw,30px);
+  }
+  .card{
+    background:var(--crema-papel);
+    border:1px solid var(--linea);
+    padding:36px 30px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .card .ico{color:var(--bordo);margin-bottom:12px;display:flex;align-items:center;justify-content:center}
+  .card .ico svg{width:40px;height:40px;display:block}
+  .card h3{
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.35rem;
+    color:var(--bordo);letter-spacing:.03em;
+  }
+  .card .big{
+    font-family:'Caveat',cursive;font-weight:700;font-size:2rem;color:var(--bordo);line-height:1;
+  }
+  .card p{font-size:.95rem;color:var(--bordo)}
+  .card .muted{color:var(--bordo);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em}
+  .maplink{
+    display:inline-block;margin-top:10px;color:var(--bordo);font-size:.8rem;text-transform:uppercase;
+    letter-spacing:.16em;text-decoration:none;border-bottom:1px solid var(--bordo);padding-bottom:2px;
+  }
+  .maplink:hover{border-color:var(--bordo)}
+  .card .info-line{
+    margin-top:10px;color:var(--bordo);font-size:.8rem;text-transform:uppercase;
+    letter-spacing:.16em;font-weight:400;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{max-width:560px;margin:0 auto;position:relative}
+  .timeline::before{
+    content:"";position:absolute;left:78px;top:8px;bottom:8px;width:1px;
+    background:var(--linea);
+  }
+  .tl-item{display:grid;grid-template-columns:78px 1fr;gap:26px;padding:16px 0;position:relative}
+  .tl-time{
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.15rem;
+    color:var(--bordo);text-align:right;padding-top:2px;
+  }
+  .tl-body{position:relative;padding-left:30px}
+  .tl-body::before{
+    content:"";position:absolute;left:-4px;top:9px;width:9px;height:9px;
+    border-radius:50%;background:var(--crema);border:2px solid var(--bordo);
+  }
+  .tl-body h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.2rem;color:var(--bordo-tinta)}
+  .tl-body p{font-size:.9rem;color:var(--rosa)}
+  @media(max-width:520px){
+    .timeline::before{left:64px}
+    .tl-item{grid-template-columns:64px 1fr;gap:16px}
+    .tl-time{font-size:1rem}
+  }
+
+  /* ---------- RSVP ---------- */
+  .rsvp-card{
+    max-width:640px;margin:0 auto;text-align:center;
+    background:var(--bordo);color:var(--crema-papel);
+    padding:clamp(44px,7vw,72px) clamp(28px,5vw,60px);
+  }
+  .rsvp-card .section-eyebrow{color:var(--rosa-suave)}
+  .rsvp-card h2{
+    font-family:'Caveat',cursive;font-weight:700;font-size:clamp(2.4rem,7vw,3.6rem);
+    color:var(--crema-papel);margin-bottom:16px;line-height:.95;
+  }
+  .rsvp-card p{color:rgba(254,252,239,.82);font-size:1.05rem;margin-bottom:10px}
+  .rsvp-card .deadline{
+    font-family:'Cormorant',serif;font-style:italic;font-size:1.2rem;
+    color:var(--rosa-suave);margin:20px 0 30px;
+  }
+  .btn{
+    display:inline-block;background:var(--crema-papel);color:var(--bordo);
+    text-decoration:none;font-size:.82rem;text-transform:uppercase;letter-spacing:.24em;
+    padding:16px 40px;border:1px solid var(--crema-papel);transition:all .22s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:transparent;color:var(--crema-papel)}
+  .btn:focus-visible{outline:2px solid var(--rosa-suave);outline-offset:3px}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:720px;margin:0 auto}
+  details{border-bottom:1px solid var(--linea);padding:6px 0}
+  summary{
+    cursor:pointer;list-style:none;padding:20px 40px 20px 4px;position:relative;
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.28rem;color:var(--bordo);
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    font-family:'Josefin Sans';font-weight:300;font-size:1.5rem;color:var(--rosa);transition:transform .2s;
+  }
+  details[open] summary::after{content:"–"}
+  details[open] summary{color:var(--bordo-tinta)}
+  .faq-answer{padding:0 4px 22px;font-size:1rem;color:var(--bordo-tinta)}
+  summary:focus-visible{outline:2px solid var(--bordo);outline-offset:3px}
+
+  /* ---------- VIAJE ---------- */
+  .travel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,34px)}
+  .travel-item h3{
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;color:var(--bordo);
+    margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--linea);
+  }
+  .travel-item p{font-size:.98rem;margin-bottom:.7em}
+  .travel-item strong{font-weight:500;color:var(--bordo)}
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    text-align:center;padding:clamp(80px,12vw,150px) 24px;
+    background:var(--crema-claro);
+  }
+  .closing .parasiempre{
+    font-family:'Caveat',cursive;font-weight:700;
+    font-size:clamp(3.4rem,13vw,7rem);color:var(--bordo);line-height:.9;
+  }
+  .closing .sub{
+    font-family:'Cormorant',serif;font-style:italic;font-size:1.2rem;
+    color:var(--rosa);margin-top:18px;letter-spacing:.05em;
+  }
+  .closing .mini-logo{width:96px;margin:0 auto 30px;display:block;opacity:.9}
+
+  footer{
+    text-align:center;padding:34px 24px;background:var(--bordo);
+    color:var(--rosa-suave);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  }
+  footer .heart{color:var(--rosa-suave)}
+
+  /* ---------- RSVP INTERACTIVO ---------- */
+  #rsvp .rsvp-panel{
+    max-width:620px;margin:0 auto;
+    background:var(--crema-papel);border:1px solid var(--linea);
+    padding:clamp(26px,5vw,46px);
+  }
+  #rsvp .deadline{
+    text-align:center;font-family:'Cormorant',serif;font-style:italic;font-size:1.15rem;
+    color:var(--rosa);margin:0 auto 28px;max-width:620px;
+  }
+  #rsvp .field-label{
+    display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;
+    color:var(--rosa);margin-bottom:10px;
+  }
+  #rsvp .search-wrap{position:relative}
+  #rsvp #guestSearch{
+    width:100%;font-family:'Cormorant',serif;font-size:1.35rem;color:var(--bordo-tinta);
+    background:transparent;border:none;border-bottom:1.5px solid var(--bordo);
+    padding:10px 34px 10px 2px;outline:none;
+  }
+  #rsvp #guestSearch::placeholder{color:var(--rosa);font-style:italic}
+  #rsvp .search-wrap .clear{
+    position:absolute;right:2px;top:8px;background:none;border:none;cursor:pointer;
+    font-size:1.4rem;color:var(--rosa);line-height:1;display:none;padding:4px;
+  }
+  #rsvp .search-wrap .clear:hover{color:var(--bordo)}
+  #rsvp .suggestions{
+    list-style:none;position:absolute;left:0;right:0;top:100%;z-index:20;
+    background:var(--crema-papel);border:1px solid var(--linea);border-top:none;
+    max-height:280px;overflow-y:auto;box-shadow:0 14px 30px rgba(100,19,14,.12);display:none;
+  }
+  #rsvp .suggestions.open{display:block}
+  #rsvp .suggestions li{
+    padding:13px 18px;cursor:pointer;font-family:'Cormorant',serif;font-size:1.15rem;
+    color:var(--bordo-tinta);border-bottom:1px solid var(--linea);transition:background .12s;
+  }
+  #rsvp .suggestions li:last-child{border-bottom:none}
+  #rsvp .suggestions li:hover,#rsvp .suggestions li.active{background:var(--crema)}
+  #rsvp .suggestions li mark{background:transparent;color:var(--bordo);font-weight:600}
+  #rsvp .suggestions .empty{color:var(--rosa);font-style:italic;cursor:default}
+  #rsvp .suggestions .empty:hover{background:transparent}
+  #rsvp .hint{font-size:.92rem;font-weight:500;color:var(--rosa);margin-top:14px;text-align:center}
+
+  #rsvp #rsvpForm{display:none}
+  #rsvp #rsvpForm.open{display:block;animation:rsvpFade .4s ease both}
+  @keyframes rsvpFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){#rsvp #rsvpForm.open{animation:none}}
+
+  #rsvp .selected-bar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    padding:12px 16px;background:var(--crema);border:1px solid var(--linea);margin-bottom:6px;
+  }
+  #rsvp .selected-bar .who{font-family:'Cormorant',serif;font-size:1.05rem;color:var(--bordo-tinta)}
+  #rsvp .selected-bar .who strong{color:var(--bordo);font-weight:600}
+  #rsvp .change-btn{
+    background:none;border:none;cursor:pointer;color:var(--bordo);
+    font-family:'Josefin Sans';font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;
+    border-bottom:1px solid var(--rosa);padding:2px 0;
+  }
+  #rsvp .change-btn:hover{border-color:var(--bordo)}
+
+  #rsvp .person{
+    border:1px solid var(--linea);padding:24px clamp(18px,4vw,28px);margin-top:20px;
+    background:var(--crema-claro);
+  }
+  #rsvp .person-name{
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.5rem;color:var(--bordo);
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;
+  }
+  #rsvp .person-tag{
+    font-family:'Josefin Sans';font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;
+    color:var(--rosa);border:1px solid var(--rosa-suave);padding:3px 9px;border-radius:20px;font-weight:400;
+  }
+  #rsvp .person-sub{font-size:.9rem;font-weight:500;color:var(--rosa);margin-bottom:18px}
+  #rsvp .event-row{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:14px 0;border-top:1px solid var(--linea);flex-wrap:wrap;
+  }
+  #rsvp .event-row:first-of-type{border-top:none}
+  #rsvp .ev-name{font-family:'Cormorant',serif;font-weight:600;font-size:1.2rem;color:var(--bordo-tinta)}
+  #rsvp .ev-meta{font-size:.82rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.12em}
+  #rsvp .toggle{display:inline-flex;border:1px solid var(--bordo);overflow:hidden;flex:none}
+  #rsvp .toggle button{
+    background:transparent;border:none;cursor:pointer;font-family:'Josefin Sans';
+    font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--bordo);
+    padding:9px 16px;transition:all .15s;
+  }
+  #rsvp .toggle button+button{border-left:1px solid var(--bordo)}
+  #rsvp .toggle button.sel-yes{background:var(--ok);color:#fff;border-color:var(--ok)}
+  #rsvp .toggle button.sel-no{background:var(--no);color:#fff}
+  #rsvp .allergy{margin-top:16px}
+  #rsvp .allergy .ally-lbl{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--rosa);margin-bottom:10px;display:block}
+  #rsvp .diet-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  #rsvp .chip{
+    background:transparent;border:1px solid var(--bordo);color:var(--bordo);cursor:pointer;
+    font-family:'Josefin Sans';font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;
+    padding:8px 17px;border-radius:22px;transition:all .15s;
+  }
+  #rsvp .chip:hover{background:var(--crema)}
+  #rsvp .chip.on{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+  #rsvp .chip:focus-visible{outline:2px solid var(--bordo);outline-offset:2px}
+  #rsvp .diet-otros{
+    width:100%;font-family:'Josefin Sans';font-weight:300;font-size:1rem;color:var(--bordo-tinta);
+    background:var(--crema-papel);border:1px solid var(--linea);padding:11px 14px;outline:none;
+  }
+  #rsvp .diet-otros:focus{border-color:var(--bordo)}
+  #rsvp .submit-row{margin-top:28px;text-align:center}
+  #rsvp .email-block{
+    border:1px solid var(--linea);padding:22px clamp(18px,4vw,28px);margin-top:20px;
+    background:var(--crema-claro);
+  }
+  #rsvp .email-block .ally-lbl{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--rosa);margin-bottom:4px;display:block}
+  #rsvp .email-block .email-hint{font-size:.92rem;font-weight:500;color:var(--rosa);margin:0 0 12px}
+  #rsvp .email-block input{
+    width:100%;font-family:'Josefin Sans';font-weight:300;font-size:1.05rem;color:var(--bordo-tinta);
+    background:var(--crema-papel);border:1px solid var(--linea);padding:12px 14px;outline:none;
+  }
+  #rsvp .email-block input:focus{border-color:var(--bordo)}
+  #rsvp .rsvp-btn{
+    display:inline-block;background:var(--bordo);color:var(--crema-papel);
+    border:1px solid var(--bordo);cursor:pointer;
+    font-family:'Josefin Sans';font-size:.82rem;text-transform:uppercase;letter-spacing:.24em;
+    padding:16px 44px;transition:all .2s;
+  }
+  #rsvp .rsvp-btn:hover:not(:disabled){background:transparent;color:var(--bordo)}
+  #rsvp .rsvp-btn:focus-visible{outline:2px solid var(--bordo);outline-offset:3px}
+  #rsvp .form-msg{font-size:.85rem;color:var(--no);margin-top:14px;min-height:1.2em;text-align:center}
+
+  #rsvp #rsvpDone{display:none;text-align:center}
+  #rsvp #rsvpDone.open{display:block;animation:rsvpFade .5s ease both}
+  #rsvp #rsvpDone .check{font-size:2.6rem;margin-bottom:8px}
+  #rsvp #rsvpDone h3{font-family:'Caveat',cursive;font-weight:700;font-size:2.6rem;color:var(--bordo);line-height:1}
+  #rsvp #rsvpDone p{margin-top:10px}
+  #rsvp .summary{
+    text-align:left;background:var(--crema-claro);border:1px solid var(--linea);
+    padding:18px 20px;margin-top:22px;font-size:.95rem;color:var(--bordo-tinta);
+  }
+  #rsvp .summary .s-person{font-family:'Cormorant',serif;font-weight:600;font-size:1.1rem;color:var(--bordo);margin-top:10px}
+  #rsvp .summary .s-person:first-child{margin-top:0}
+  #rsvp .summary .s-line{font-size:.9rem;padding-left:4px}
+  #rsvp .summary .s-ally{font-size:.82rem;color:var(--rosa);padding-left:4px}
+  #rsvp .again{margin-top:22px;background:none;border:none;color:var(--bordo);cursor:pointer;
+    text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;border-bottom:1px solid var(--rosa);padding-bottom:2px}
+  #rsvp .again:hover{border-color:var(--bordo)}
+
+  /* Tarjetas post-confirmación: Civil y Regalo */
+  #rsvp .after-cards{margin-top:26px;display:grid;gap:16px;text-align:left}
+  #rsvp .info-card{
+    background:var(--crema-claro);border:1px solid var(--linea);
+    border-left:4px solid var(--bordo);padding:18px 20px;
+  }
+  #rsvp .info-card .ic-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  #rsvp .info-card .ic-head svg{width:24px;height:24px;color:var(--bordo);flex:none}
+  #rsvp .info-card h4{
+    font-family:'Cormorant',serif;font-weight:600;font-size:1.25rem;color:var(--bordo);line-height:1.1;
+  }
+  #rsvp .info-card .ic-row{display:flex;gap:8px;font-size:.92rem;color:var(--bordo-tinta);margin-top:6px;line-height:1.4}
+  #rsvp .info-card .ic-row .ic-lbl{
+    flex:none;min-width:66px;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--rosa);padding-top:3px;
+  }
+  #rsvp .info-card .ic-row .ic-val{flex:1}
+  #rsvp .info-card .ic-row .ic-val strong{color:var(--bordo)}
+  #rsvp .info-card .maplink{display:inline-block;margin-top:4px;font-size:.8rem;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--bordo);
+    border-bottom:1px solid var(--rosa);padding-bottom:1px}
+  #rsvp .info-card .maplink:hover{border-color:var(--bordo)}
+  #rsvp .info-card .ic-note{font-size:.82rem;color:var(--rosa);margin-top:12px;font-style:italic}
+  /* fila copiable de datos bancarios */
+  #rsvp .cbu-line{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:var(--crema);border:1px solid var(--linea);padding:9px 12px;margin-top:6px;
+  }
+  #rsvp .cbu-line .cbu-val{font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
+    font-size:.9rem;color:var(--bordo-tinta);word-break:break-all}
+  #rsvp .cbu-line .copy-btn{flex:none;background:none;border:1px solid var(--rosa);color:var(--bordo);
+    cursor:pointer;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;padding:5px 9px}
+  #rsvp .cbu-line .copy-btn:hover{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+  #rsvp .cbu-line .copy-btn.ok{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+
+  /* ---------- REGALOS ---------- */
+  .gift-intro{text-align:center;max-width:560px;margin:-18px auto 34px;font-family:'Cormorant',serif;
+    font-style:italic;font-size:1.15rem;color:var(--bordo-tinta);line-height:1.5}
+  .gift-card{
+    background:var(--crema-claro);border:1px solid var(--linea);border-left:4px solid var(--bordo);
+    padding:24px 26px;max-width:520px;margin:0 auto;text-align:left;
+  }
+  .gift-card .gift-sub{margin:18px 0 4px;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--rosa)}
+  .gift-line{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:var(--crema);border:1px solid var(--linea);padding:9px 12px;margin-top:8px;
+  }
+  .gift-line .gift-lbl{flex:none;min-width:56px;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--rosa)}
+  .gift-line .gift-val{flex:1;font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
+    font-size:.88rem;color:var(--bordo-tinta);word-break:break-all}
+  .gift-line .copy-btn{flex:none;background:none;border:1px solid var(--rosa);color:var(--bordo);
+    cursor:pointer;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;padding:5px 9px}
+  .gift-line .copy-btn:hover{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+  .gift-line .copy-btn.ok{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="#historia">Nuestra historia</a>
+    <a href="#detalles">El gran día</a>
+    <a href="#viaje">Cómo llegar</a>
+    <a href="#regalos">Regalos</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#rsvp">Confirmar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="eyebrow">Nos casamos!</p>
+  <img class="hero-logo" src="imagenes/logo.png" alt="Dos corazones tomados de la mano, el símbolo de Euge y Santi">
+  <h1>Euge <span class="amp">&amp;</span> Santi</h1>
+  <div class="datestrip">
+    <span>Lunes</span><span class="dot"></span><span>7 de diciembre</span><span class="dot"></span><span>2026</span>
+  </div>
+  <p class="place">Buenos Aires, Argentina</p>
+
+  <div class="countdown" id="countdown" aria-label="Cuenta regresiva para la boda">
+    <div class="cd-unit"><div class="cd-num" id="cd-days">—</div><div class="cd-lbl">días</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-hours">—</div><div class="cd-lbl">horas</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-mins">—</div><div class="cd-lbl">min</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-secs">—</div><div class="cd-lbl">seg</div></div>
+  </div>
+</header>
+
+<!-- HISTORIA -->
+<section id="historia" class="alt">
+  <div class="wrap-wide">
+    <h2 class="section-title reveal">Todo empezó en San Pablo en 2022...</h2>
+    <p class="story-intro reveal">Algunos dirían que Bain es solo un trabajo, pero para nosotros fue mucho más que eso</p>
+
+    <div class="story-canvas">
+
+      <div class="story-row reveal">
+        <div class="st-node">
+          <div class="st-text">
+            <p class="st-eyebrow">Buenos Aires · 2022</p>
+          </div>
+          <figure class="st-photo">
+            <div class="st-photo-inner">
+              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 1</span></div>
+              <img src="imagenes/foto-ciudad.jpg" alt="Euge y Santi abrazados en la oficina donde se conocieron" loading="lazy" onerror="this.style.display='none'">
+            </div>
+          </figure>
+        </div>
+        <div class="story-illus"><img src="imagenes/ilustracion-ciudad.png" alt="" loading="lazy"></div>
+      </div>
+
+      <div class="story-connector" aria-hidden="true">
+        <svg viewBox="0 0 100 16"><path d="M21,1 C21,10 79,6 79,15"/></svg>
+      </div>
+
+      <div class="story-row reverse reveal">
+        <div class="st-node">
+          <div class="st-text">
+            <p class="st-eyebrow">Long distance · 2022–23</p>
+          </div>
+          <figure class="st-photo">
+            <div class="st-photo-inner">
+              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 2</span></div>
+              <img src="imagenes/foto-avion.jpg" alt="Euge y Santi en Washington Square, Nueva York" loading="lazy" onerror="this.style.display='none'">
+            </div>
+          </figure>
+        </div>
+        <div class="story-illus"><img src="imagenes/ilustracion-avion.png" alt="" loading="lazy"></div>
+      </div>
+
+      <div class="story-connector" aria-hidden="true">
+        <svg viewBox="0 0 100 16"><path d="M79,1 C79,10 21,6 21,15"/></svg>
+      </div>
+
+      <div class="story-row reveal">
+        <div class="st-node">
+          <div class="st-text">
+            <p class="st-eyebrow">New York y el mundo · 2024–25</p>
+          </div>
+          <figure class="st-photo">
+            <div class="st-photo-inner">
+              <img src="imagenes/foto-nyc.jpg" alt="Euge y Santi en Kyoto, Japón" loading="lazy">
+            </div>
+          </figure>
+        </div>
+        <div class="story-illus"><img src="imagenes/ilustracion-nyc.png" alt="" loading="lazy"></div>
+      </div>
+
+      <div class="story-connector" aria-hidden="true">
+        <svg viewBox="0 0 100 16"><path d="M21,1 C21,10 79,6 79,15"/></svg>
+      </div>
+
+      <div class="story-row reverse reveal">
+        <div class="st-node">
+          <div class="st-text">
+            <p class="st-eyebrow">Buenos Aires · 2025 – forever</p>
+          </div>
+          <figure class="st-photo">
+            <div class="st-photo-inner">
+              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 4</span></div>
+              <img src="imagenes/foto-anillo.jpg" alt="Euge y Santi la noche de la propuesta, mostrando el anillo" loading="lazy" onerror="this.style.display='none'">
+            </div>
+          </figure>
+        </div>
+        <div class="story-illus"><img src="imagenes/ilustracion-anillo.png" alt="" loading="lazy"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DETALLES -->
+<section id="detalles">
+  <div class="wrap-wide">
+    <h2 class="section-title reveal" style="margin-bottom:14px">El gran día</h2>
+    <p class="section-eyebrow reveal" style="margin-bottom:clamp(30px,6vw,60px)">Todo lo que necesitás saber</p>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11.5c-.3 4 -.4 15 0 21 .1 1.2 1 2 2.2 2.1 6.7.4 14.6.4 21.5 0 1.2-.1 2-.9 2.1-2.1.4-6 .3-16 0-21-.1-1.1-.9-1.9-2-2-6.8-.5-15-.5-21.8 0-1.1.1-1.9.8-2 2z"/><path d="M6.8 18.3c8.5.5 18 .5 26.5 0"/><path d="M13.5 6.5c-.2 2-.2 4 0 6.2M26.7 6.5c-.2 2-.2 4 0 6.2"/><path d="M20 25c-1.3-1.7-4.2-1-4.2 1.3 0 1.9 2.7 3.6 4.2 4.5 1.5-.9 4.2-2.6 4.2-4.5 0-2.3-2.9-3-4.2-1.3z"/></svg></span>
+        <h3>Cuándo</h3>
+        <div class="big" style="font-size:1.5rem">7 de Diciembre 2026</div>
+        <p class="info-line">Lunes · 17:30 hs</p>
+      </div>
+      <div class="card reveal">
+        <span class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="24" r="9"/><circle cx="25" cy="24" r="9"/><path d="M11.5 15.8 15 9l3.5 6.8M21.5 15.8 25 9l3.5 6.8"/></svg></span>
+        <h3>Dónde</h3>
+        <div class="big" style="font-size:1.5rem">Rüt Haus</div>
+        <a class="maplink" href="https://maps.app.goo.gl/TAhfCKJMXK8HqpZK8" target="_blank" rel="noopener">Ver en el mapa</a>
+      </div>
+      <div class="card reveal">
+        <span class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:scale(1.2)"><path d="M20 17.5c-.2-1.6-.3-3 .6-4 .9-1 2.6-1 3.5 0 .7.8.8 1.8.5 2.8"/><path d="M20 17.5 6.5 27.3c-.9.7-.5 2.1.6 2.2 8.5.6 17.3.6 25.8 0 1.1-.1 1.5-1.5.6-2.2L20 17.5z"/><path d="M20 22.5l-4 3c-.5.4-.2 1.2.4 1.2h7.2c.6 0 .9-.8.4-1.2l-4-3z" fill="currentColor" stroke="none"/><path d="M16 25.7c-1.3.5-2.4.9-3.2 1.6M24 25.7c1.3.5 2.4.9 3.2 1.6"/></svg></span>
+        <h3>Dress Code</h3>
+        <div class="big" style="font-size:1.5rem">Elegante</div>
+        <p class="info-line">Formal - Traje y corbata</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIAJE / ALOJAMIENTO -->
+<section id="viaje" class="alt">
+  <div class="wrap-wide">
+    <h2 class="section-title reveal">Cómo llegar &amp; Dónde quedarse</h2>
+    <div class="travel-grid">
+      <div class="travel-item reveal">
+        <h3>Cómo llegar</h3>
+        <p>Es súper fácil llegar en Taxi, Uber o Cabify, pero si querés venir en auto, hay estacionamiento disponible en el lugar</p>
+        <p><a class="maplink" href="https://maps.app.goo.gl/TAhfCKJMXK8HqpZK8" target="_blank" rel="noopener">Ver en el mapa</a></p>
+      </div>
+      <div class="travel-item reveal">
+        <h3>Dónde quedarse</h3>
+        <p><a href="https://www.casasurhotel.com/" target="_blank" rel="noopener"><strong>Hotel Casa Sur Bellini</strong></a> — Cabello 3780, C1425 Cdad. Autónoma de Buenos Aires.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <h2 class="section-title reveal">Confirmá tu asistencia</h2>
+
+  <div class="rsvp-panel reveal">
+    <!-- Paso 1: buscador -->
+    <div id="rsvpSearchStep">
+      <label class="field-label" for="guestSearch">Buscá tu nombre</label>
+      <div class="search-wrap">
+        <input id="guestSearch" type="text" autocomplete="off" placeholder="Empezá a escribir…"
+               role="combobox" aria-expanded="false" aria-controls="suggestions" aria-autocomplete="list">
+        <button class="clear" id="clearBtn" type="button" aria-label="Borrar">×</button>
+        <ul class="suggestions" id="suggestions" role="listbox"></ul>
+      </div>
+      <p class="hint">Si no encontrás tu nombre escribinos por WhatsApp y lo solucionamos!</p>
+    </div>
+
+    <!-- Paso 1.5: ya había confirmado -->
+    <div id="rsvpAlready" style="display:none">
+      <div class="selected-bar">
+        <span class="who"><strong id="alreadyName">—</strong></span>
+        <button type="button" class="change-btn" id="alreadyBackBtn">← Buscar otro nombre</button>
+      </div>
+      <p class="already-msg" id="alreadyMsg" style="color:var(--bordo-tinta);margin:14px 0"></p>
+      <button type="button" class="rsvp-btn" id="alreadyChangeBtn" style="background:transparent;color:var(--bordo)">Quiero modificar mi respuesta</button>
+    </div>
+
+    <!-- Paso 2: formulario condicional -->
+    <form id="rsvpForm" novalidate>
+      <div class="selected-bar">
+        <span class="who">Confirmando como <strong id="selectedName">—</strong></span>
+        <button type="button" class="change-btn" id="changeNameBtn">← No soy yo, cambiar</button>
+      </div>
+      <div id="peopleContainer"></div>
+      <div class="email-block">
+        <label class="ally-lbl" for="rsvpEmail">Tu email</label>
+        <p class="email-hint">Te enviamos la confirmación y todos los detalles (dirección y horarios) a este correo.</p>
+        <input id="rsvpEmail" type="email" autocomplete="email" inputmode="email" placeholder="tunombre@email.com">
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="rsvp-btn" id="submitBtn">Enviar confirmación</button>
+        <p class="form-msg" id="formMsg"></p>
+      </div>
+    </form>
+
+    <!-- Paso 3: confirmación -->
+    <div id="rsvpDone">
+      <div class="check"><svg viewBox="0 0 48 44" width="52" height="48" fill="none" stroke="var(--bordo)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 40C10 31 3 24 3 15.5 3 9 8 4.5 13.5 4.5c3.8 0 7.3 2.1 9.2 5 .5.8 1.6.9 2.2.1 2-2.9 5.4-5.1 9.4-5.1C39 4.5 44 9 44 15.5 44 24 37 31 24 40z"/></svg></div>
+      <h3>Gracias!</h3>
+      <p id="doneMsg">Recibimos tu confirmación. ¡Nos vemos pronto!</p>
+      <div class="summary" id="summaryView"></div>
+
+      <div class="after-cards">
+        <!-- Info del Civil -->
+        <div class="info-card">
+          <div class="ic-head">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 15.5c-4.6.1-8.2 3.9-8 8.5.2 4.4 3.9 7.8 8.3 7.6 4.4-.2 7.8-3.9 7.6-8.3-.2-4.3-3.7-7.7-7.9-7.8z"/><path d="M24 15.5c4.6.1 8.2 3.9 8 8.5-.2 4.4-3.9 7.8-8.3 7.6-1.6-.1-3-.6-4.2-1.5"/><path d="M20 15l-2.6-4.2c-.3-.5-.1-1 .4-1.3 1.4-.6 3-.6 4.4 0 .5.2.7.8.4 1.3L20 15z"/><path d="M20 5.5l.9 1.8 1.8.9-1.8.9-.9 1.8-.9-1.8-1.8-.9 1.8-.9z" fill="currentColor" stroke="none"/></svg>
+            <h4>El Civil</h4>
+          </div>
+          <div class="ic-row"><span class="ic-lbl">Fecha</span><span class="ic-val"><strong>Viernes 4 de diciembre de 2026</strong></span></div>
+          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">17:00 hs</span></div>
+          <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Registro Civil Uruguay<br><a class="maplink" href="https://maps.app.goo.gl/Ms7mKSfeqXU8rexC8" target="_blank" rel="noopener">Ver en el mapa</a></span></div>
+        </div>
+
+        <!-- Info del Festejo Civil -->
+        <div class="info-card">
+          <div class="ic-head">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 34V19l10-8 10 8v15"/><path d="M16 34v-9h8v9"/><path d="M6 34h28"/><path d="M14 15.5V11M26 15.5V11M11 11h18" /></svg>
+            <h4>Festejo Civil</h4>
+          </div>
+          <div class="ic-row"><span class="ic-lbl">Fecha</span><span class="ic-val"><strong>Viernes 4 de diciembre de 2026</strong></span></div>
+          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">19:00 hs</span></div>
+          <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Alvear 1992</span></div>
+        </div>
+
+        <!-- Info del Casamiento -->
+        <div class="info-card">
+          <div class="ic-head">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="24" r="9"/><circle cx="25" cy="24" r="9"/><path d="M11.5 15.8 15 9l3.5 6.8M21.5 15.8 25 9l3.5 6.8"/></svg>
+            <h4>Casamiento</h4>
+          </div>
+          <div class="ic-row"><span class="ic-lbl">Fecha</span><span class="ic-val"><strong>Lunes 7 de diciembre de 2026</strong></span></div>
+          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">17:30 hs</span></div>
+          <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Rüt Haus<br><a class="maplink" href="https://maps.app.goo.gl/TAhfCKJMXK8HqpZK8" target="_blank" rel="noopener">Ver en el mapa</a></span></div>
+        </div>
+      </div>
+
+      <button class="again" type="button" id="againBtn">Confirmar otra invitación</button>
+    </div>
+  </div>
+</section>
+
+<!-- REGALOS -->
+<section id="regalos" class="alt">
+  <div class="wrap">
+    <h2 class="section-title reveal">Regalos</h2>
+    <p class="gift-intro reveal">El mejor regalo es compartir este día con vos, pero si querés ayudarnos con la luna de miel, dejamos nuestros datos a continuación</p>
+    <div class="gift-card reveal">
+      <p class="gift-sub">Transferencia en pesos/dólares</p>
+      <div class="gift-line"><span class="gift-lbl">Alias</span><span class="gift-val">santiyeuge</span><button type="button" class="copy-btn" data-copy="santiyeuge">Copiar</button></div>
+      <div class="gift-line"><span class="gift-lbl">CBU</span><span class="gift-val">0720000788000022629986</span><button type="button" class="copy-btn" data-copy="0720000788000022629986">Copiar</button></div>
+      <div class="gift-line"><span class="gift-lbl">Titular</span><span class="gift-val">Eugenia Medone</span><button type="button" class="copy-btn" data-copy="Eugenia Medone">Copiar</button></div>
+      <p class="gift-sub">Transferencia en USA</p>
+      <div class="gift-line"><span class="gift-lbl">Zelle</span><span class="gift-val">santiagopelaez94@gmail.com</span><button type="button" class="copy-btn" data-copy="santiagopelaez94@gmail.com">Copiar</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2 class="section-title reveal">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <details class="reveal"><summary>¿Hasta cuándo puedo confirmar?</summary><div class="faq-answer">En lo posible, antes del 30 de Septiembre, si tenés cualquier duda o tema particular escribinos para tenerlo en cuenta!</div></details>
+      <details class="reveal"><summary>¿Puedo llevar acompañante?</summary><div class="faq-answer">Al escribir tu nombre en la confirmación, podrás ver tus acompañantes invitados, Ante la duda, escribinos y lo vemos juntos!</div></details>
+      <details class="reveal"><summary>¿Cuál es el dress code?</summary><div class="faq-answer">Elegante / formal. Traje, corbata, vestidos y sus mejores looks, más es más!</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing">
+  <img class="mini-logo" src="imagenes/logo.png" alt="">
+  <p class="parasiempre">Para siempre</p>
+  <p class="sub">Nos vemos el 7 de diciembre — Euge &amp; Santi</p>
+</div>
+
+<footer>
+  Euge <span class="heart">♥</span> Santi · 7 · 12 · 2026
+</footer>
+
+<script>
+  // Countdown
+  (function(){
+    const target = new Date("2026-12-07T18:00:00-03:00").getTime();
+    const dEl=document.getElementById('cd-days'),hEl=document.getElementById('cd-hours'),
+          mEl=document.getElementById('cd-mins'),sEl=document.getElementById('cd-secs');
+    function tick(){
+      const now=Date.now(), diff=target-now;
+      if(diff<=0){dEl.textContent='0';hEl.textContent='0';mEl.textContent='0';sEl.textContent='0';return;}
+      const d=Math.floor(diff/864e5),
+            h=Math.floor(diff%864e5/36e5),
+            m=Math.floor(diff%36e5/6e4),
+            s=Math.floor(diff%6e4/1e3);
+      dEl.textContent=d; hEl.textContent=String(h).padStart(2,'0');
+      mEl.textContent=String(m).padStart(2,'0'); sEl.textContent=String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
+  // Reveal on scroll
+  (function(){
+    const els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return;}
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+    els.forEach(e=>io.observe(e));
+    // Respaldo: si algún elemento quedó sin revelar (observer que no dispara), mostrarlo igual.
+    setTimeout(()=>els.forEach(e=>{const r=e.getBoundingClientRect();if(r.top<window.innerHeight)e.classList.add('in');}),1200);
+  })();
+
+  /* ============================================================
+     BASE DE DATOS DE INVITADOS
+     ------------------------------------------------------------
+     Esta lista puede venir de tu Google Apps Script (el mismo "backend"
+     que ya usás para guardar las confirmaciones) o de la lista fija de
+     acá abajo. La ventaja de traerla por Apps Script en vez de "Publicar
+     en la Web" es que tu Google Sheet queda privado — nadie puede verlo
+     ni abrirlo directamente; solo tu propio script (que corre con tus
+     permisos) puede leerlo, y expone nada más que lo necesario.
+
+     Cómo conectarla (opcional, recomendado):
+       1) Abrí tu Google Sheet > Extensiones > Apps Script (el mismo
+          proyecto donde ya está el código que recibe las confirmaciones).
+       2) Agregá (o completá) la función doGet(e) para que, cuando la
+          pidan con "?accion=invitados", devuelva la pestaña "Invitados"
+          como JSON. Te dejamos el código exacto en el archivo
+          apps-script-doGet-invitados.gs para pegar/combinar con tu doGet.
+       3) Volvé a "Implementar > Nueva implementación" (o "Administrar
+          implementaciones > Editar") para que el cambio quede publicado.
+       4) Pegá esa misma URL (termina en /exec) en INVITADOS_ENDPOINT.
+     Si INVITADOS_ENDPOINT queda vacío (""), se usa INVITADOS_FALLBACK
+     tal cual. Si está completo, la página lo trae apenas carga, arma la
+     base actualizada y la guarda en caché local (localStorage) por si en
+     la próxima visita no hay conexión — así siempre queda una copia usable.
+     ============================================================ */
+  // Poné acá la URL de tu Web App de Apps Script (la misma que RSVP_ENDPOINT,
+  // si el doGet vive en el mismo proyecto). Dejala vacía ("") para usar
+  // solo la lista fija de INVITADOS_FALLBACK.
+  const INVITADOS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
+
+  // Fila = { titular, invitado, civil, casamiento, esPlusUno }
+  // "titular" agrupa: todas las filas con el mismo "Invitado Titular" se muestran juntas.
+  const INVITADOS_FALLBACK = [
+    { titular:"Gustavo Medone",               invitado:"Gustavo Medone",               civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Sandra Novello",                invitado:"Sandra Novello",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Inés Medone",                   invitado:"Inés Medone",                   civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Inés Medone",                   invitado:"Matías Rosenberg",               civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Agustina Medone",                invitado:"Agustina Medone",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Agustina Medone",                invitado:"Fausto Borghiani",               civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Gabriela Quian",                 invitado:"Gabriela Quian",                 civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Gabriela Quian",                 invitado:"Eduardo Machin",                 civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Fernando Pelaez",                invitado:"Fernando Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Fernando Pelaez",                invitado:"Gabriela Grobocopatel",          civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Josefina Pelaez",                invitado:"Josefina Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Josefina Pelaez",                invitado:"Martin Mazueli",                 civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Fernando (H) Pelaez",             invitado:"Fernando (H) Pelaez",             civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Francisco Pelaez",                invitado:"Francisco Pelaez",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Francisco Pelaez",                invitado:"Evelin",                         civil:true,  casamiento:true,  esPlusUno:true  },
+    { titular:"Nestor Novello",                  invitado:"Nestor Novello",                  civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Angelica Novelli",                invitado:"Angelica Novelli",                civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Beatriz Failacce",                invitado:"Beatriz Failacce",                civil:false, casamiento:true,  esPlusUno:false },
+    { titular:"Sara Luisa Camila Vallejo",       invitado:"Sara Luisa Camila Vallejo",       civil:true,  casamiento:true,  esPlusUno:false },
+    { titular:"Gaston Medone",                   invitado:"Gaston Medone",                   civil:true,  casamiento:true,  esPlusUno:false },
+  ];
+
+  /* Datos de los eventos (editá horarios/lugares) */
+  const EVENTOS = {
+    civil:      { nombre:"Civil",      meta:"Vie 4 dic 2026 · 17:00 · Registro Civil Uruguay" },
+    casamiento: { nombre:"Casamiento", meta:"Lunes 7 DIC 2026 · 17:30 · Rüt Haus" },
+  };
+
+  /* ---------- Lógica ---------- */
+  (function(){
+    const norm = s => (s||"").normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+
+    /* ---- Carga de datos: caché local + (opcional) Google Sheets ---- */
+    const CACHE_KEY = 'invitadosCacheV1';
+
+    function buildGroups(rows){
+      const map = new Map(); const order = [];
+      rows.forEach(r=>{
+        const key = norm(r.titular);
+        if(!key) return;
+        if(!map.has(key)){ map.set(key, { titular:r.titular, members:[] }); order.push(key); }
+        map.get(key).members.push({ invitado:r.invitado, civil:!!r.civil, casamiento:!!r.casamiento, esPlusUno:!!r.esPlusUno });
+      });
+      return order.map(k=>map.get(k));
+    }
+
+    // Convierte las filas que devuelve el Apps Script (JSON, con las
+    // columnas tal cual están en tu Sheet) al formato interno que usamos.
+    function rowsFromJSON(rawRows){
+      if(!Array.isArray(rawRows)){
+        // Si el backend devolvió un objeto de error (ej. {error:"..."}),
+        // en vez de la lista, lo mostramos en consola para poder diagnosticarlo.
+        console.warn('[invitados] El endpoint no devolvió una lista. Respuesta recibida:', rawRows);
+        return [];
+      }
+      const col = (obj, name) => {
+        const key = Object.keys(obj).find(k => norm(k) === norm(name));
+        return key ? obj[key] : '';
+      };
+      const yes = v => /^s/i.test(String(v||'').trim());
+      return rawRows.map(r => ({
+        titular: String(col(r,'Invitado Titular')||'').trim(),
+        invitado: String(col(r,'Invitado')||'').trim(),
+        civil: yes(col(r,'Civil')),
+        casamiento: yes(col(r,'Casamiento')),
+        esPlusUno: yes(col(r,'Es +1')),
+      })).filter(r=>r.invitado && r.titular);
+    }
+
+    function loadCache(){
+      try{
+        const raw = localStorage.getItem(CACHE_KEY);
+        if(!raw) return null;
+        const parsed = JSON.parse(raw);
+        return (parsed && Array.isArray(parsed.groups)) ? parsed.groups : null;
+      }catch(e){ return null; }
+    }
+    function saveCache(groups){
+      try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts:Date.now(), groups })); }catch(e){}
+    }
+
+    // Al abrir: usamos caché (si hay) o la lista fija, y en paralelo
+    // intentamos traer la versión más nueva desde tu Apps Script (si está configurado).
+    let GRUPOS = loadCache() || buildGroups(INVITADOS_FALLBACK);
+
+    function refreshFromSheet(){
+      if(!INVITADOS_ENDPOINT) return;
+      const sep = INVITADOS_ENDPOINT.includes('?') ? '&' : '?';
+      const url = INVITADOS_ENDPOINT + sep + 'accion=invitados';
+      fetch(url, { cache:'no-store' })
+        .then(r => {
+          if(!r.ok) throw new Error('HTTP ' + r.status + ' al pedir ' + url);
+          return r.json();
+        })
+        .then(rawRows => {
+          const rows = rowsFromJSON(rawRows);
+          if(rows.length){
+            GRUPOS = buildGroups(rows);
+            saveCache(GRUPOS);
+            console.info('[invitados] Base actualizada desde Google Sheets: ' + rows.length + ' filas, ' + GRUPOS.length + ' grupos.');
+          } else {
+            console.warn('[invitados] La respuesta llegó bien pero no tiene filas usables. Seguimos con la lista de respaldo.');
+          }
+        })
+        .catch(err => {
+          // Dejamos el detalle en consola (F12 > Console) para poder diagnosticar:
+          // - "Failed to fetch" -> problema de red o de CORS en el deployment.
+          // - "HTTP 401/403" -> el deployment no está en "Cualquier usuario".
+          // - "Unexpected token '<'" -> el endpoint devolvió HTML (login de Google) en vez de JSON.
+          console.warn('[invitados] No se pudo traer la lista desde Apps Script, seguimos con la lista de respaldo/caché.', err);
+        });
+    }
+    refreshFromSheet();
+
+    /* ---- Confirmaciones ya guardadas ----
+       La precargamos apenas se abre la página (igual que la lista de
+       invitados) para que, cuando elijas tu nombre, la web ya sepa si
+       confirmaste antes SIN tener que esperar una consulta nueva al
+       servidor en ese momento. Si por algún motivo no llegó a tiempo
+       (recién abriste la página, sin conexión, etc.), seguimos
+       funcionando igual: se hace el chequeo en vivo como antes. */
+    let CONFIRMADOS = null; // null = todavía no cargó; Map = ya está lista
+
+    function refreshConfirmados(){
+      if(!INVITADOS_ENDPOINT) { CONFIRMADOS = new Map(); return; }
+      const sep = INVITADOS_ENDPOINT.includes('?') ? '&' : '?';
+      const url = INVITADOS_ENDPOINT + sep + 'accion=confirmados';
+      fetch(url, { cache:'no-store' })
+        .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(rawRows => {
+          if(!Array.isArray(rawRows)) throw new Error('Respuesta inesperada de confirmados: ' + JSON.stringify(rawRows));
+          const map = new Map();
+          rawRows.forEach(row => {
+            const t = row.titular || row.Titular;
+            if(!t) return;
+            map.set(norm(t), { titular:t, fecha: row.fecha || row.Fecha || '' });
+          });
+          CONFIRMADOS = map;
+          console.info('[confirmados] Precargadas ' + map.size + ' confirmaciones.');
+        })
+        .catch(err => {
+          console.warn('[confirmados] No se pudieron precargar; se va a chequear en el momento como antes.', err);
+        });
+    }
+    refreshConfirmados();
+
+    function flatEntries(){
+      const list = [];
+      GRUPOS.forEach(g => g.members.forEach(m => list.push({ nombre:m.invitado, group:g })));
+      return list;
+    }
+    function groupLabel(g){
+      const names = g.members.map(m=>m.invitado);
+      if(names.length<=1) return names[0] || g.titular;
+      return names.slice(0,-1).join(', ') + ' y ' + names[names.length-1];
+    }
+
+    const input = document.getElementById('guestSearch');
+    const sugg  = document.getElementById('suggestions');
+    const clearBtn = document.getElementById('clearBtn');
+    const searchStep = document.getElementById('rsvpSearchStep');
+    const already = document.getElementById('rsvpAlready');
+    const form = document.getElementById('rsvpForm');
+    const peopleContainer = document.getElementById('peopleContainer');
+    const formMsg = document.getElementById('formMsg');
+    const done = document.getElementById('rsvpDone');
+    const selectedName = document.getElementById('selectedName');
+    if(!input) return;
+
+    let activeIdx = -1, currentMatches = [], selectedGuest = null, rsvpState = {};
+
+    function openSugg(){ sugg.classList.add('open'); input.setAttribute('aria-expanded','true'); }
+    function closeSugg(){ sugg.classList.remove('open'); input.setAttribute('aria-expanded','false'); activeIdx=-1; }
+
+    function renderSuggestions(q){
+      const nq = norm(q);
+      sugg.innerHTML=''; activeIdx=-1;
+      if(nq.length===0){ closeSugg(); return; }
+      currentMatches = flatEntries().filter(e => norm(e.nombre).includes(nq));
+      if(currentMatches.length===0){
+        const li=document.createElement('li'); li.className='empty';
+        li.textContent='No encontramos ese nombre…'; sugg.appendChild(li); openSugg(); return;
+      }
+      currentMatches.slice(0,8).forEach((e,i)=>{
+        const li=document.createElement('li'); li.setAttribute('role','option'); li.dataset.idx=i;
+        const name=e.nombre, idx=norm(name).indexOf(nq);
+        if(idx>=0){ li.innerHTML=name.slice(0,idx)+'<mark>'+name.slice(idx,idx+q.length)+'</mark>'+name.slice(idx+q.length); }
+        else { li.textContent=name; }
+        li.addEventListener('click',()=>selectGuest(e.group, e.nombre));
+        sugg.appendChild(li);
+      });
+      openSugg();
+    }
+    function highlight(items){
+      items.forEach((li,i)=>li.classList.toggle('active',i===activeIdx));
+      if(items[activeIdx]) items[activeIdx].scrollIntoView({block:'nearest'});
+    }
+
+    input.addEventListener('input',e=>{
+      clearBtn.style.display=e.target.value?'block':'none';
+      renderSuggestions(e.target.value);
+    });
+    input.addEventListener('keydown',e=>{
+      const items=[...sugg.querySelectorAll('li:not(.empty)')];
+      if(e.key==='ArrowDown'){e.preventDefault();activeIdx=Math.min(activeIdx+1,items.length-1);highlight(items);}
+      else if(e.key==='ArrowUp'){e.preventDefault();activeIdx=Math.max(activeIdx-1,0);highlight(items);}
+      else if(e.key==='Enter'){e.preventDefault();if(activeIdx>=0&&currentMatches[activeIdx])selectGuest(currentMatches[activeIdx].group, currentMatches[activeIdx].nombre);}
+      else if(e.key==='Escape'){closeSugg();}
+    });
+    clearBtn.addEventListener('click',resetSearch);
+    document.addEventListener('click',e=>{ if(!e.target.closest('#rsvp .search-wrap')) closeSugg(); });
+
+    function showForm(group){
+      buildForm(group);
+      searchStep.style.display='none';
+      form.classList.add('open');
+      formMsg.textContent='';
+      document.getElementById('rsvp').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    async function selectGuest(group, matchedName){
+      selectedGuest=group; input.value=matchedName; closeSugg();
+      selectedName.textContent=groupLabel(group);
+      done.classList.remove('open');
+      already.classList.remove('open');
+      already.style.display='none';
+
+      if(RSVP_ENDPOINT){
+        if(CONFIRMADOS){
+          // Ya tenemos las confirmaciones precargadas: respondemos al toque, sin red.
+          const hit = CONFIRMADOS.get(norm(group.titular));
+          if(hit){ showAlready(group, { confirmado:true, fecha:hit.fecha }); return; }
+          showForm(group);
+          return;
+        }
+        // La precarga todavía no llegó (recién abriste la página, o falló):
+        // hacemos el chequeo en vivo, como antes.
+        searchStep.style.display='none';
+        formMsg.textContent='';
+        form.style.display='none';
+        form.classList.remove('open');
+        try{
+          const status = await checkGuestStatus(group.titular);
+          if(status && status.confirmado){
+            showAlready(group, status);
+            return;
+          }
+        }catch(err){
+          console.warn('No se pudo chequear estado previo:', err);
+        }
+        form.style.display='';
+      }
+
+      showForm(group);
+    }
+
+    async function checkGuestStatus(nombre){
+      const url = RSVP_ENDPOINT + '?nombre=' + encodeURIComponent(nombre);
+      const res = await fetch(url);
+      return res.json();
+    }
+
+    function showAlready(g, status){
+      document.getElementById('alreadyName').textContent = groupLabel(g);
+      document.getElementById('alreadyMsg').textContent =
+        '¡Ya estás confirmado/a!' + (status.fecha ? ' Recibimos tu respuesta el ' + new Date(status.fecha).toLocaleDateString('es-AR') + '.' : '') +
+        ' Si te equivocaste o cambió algo, podés modificar tu respuesta.';
+      already.style.display='block';
+      already.classList.add('open');
+      document.getElementById('rsvp').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    document.getElementById('alreadyBackBtn').addEventListener('click',resetSearch);
+    document.getElementById('alreadyChangeBtn').addEventListener('click',()=>{
+      already.style.display='none';
+      already.classList.remove('open');
+      buildForm(selectedGuest);
+      form.style.display='';
+      form.classList.add('open');
+      formMsg.textContent='';
+    });
+
+    function personBlock(name,who,evts,isPlusUno){
+      rsvpState[who]={};
+      const wrap=document.createElement('div');
+      wrap.className='person'+(isPlusUno?' plus':'');
+      const invited = Object.entries(evts).filter(([k,v])=>v).map(([k])=>k);
+      const evLabels = invited.map(k=>EVENTOS[k].nombre).join(' y ');
+      wrap.innerHTML = '<div class="person-name">'+name+'</div>'+
+        '<div class="person-sub">Invitación al '+evLabels+'. Confirmá para cada evento:</div>';
+      invited.forEach(evKey=>{
+        rsvpState[who][evKey]=null;
+        const row=document.createElement('div'); row.className='event-row';
+        row.innerHTML='<div class="event-info"><div class="ev-name">'+EVENTOS[evKey].nombre+'</div>'+
+          '<div class="ev-meta">'+EVENTOS[evKey].meta+'</div></div>'+
+          '<div class="toggle" role="group" aria-label="Asistencia a '+EVENTOS[evKey].nombre+'">'+
+          '<button type="button" data-v="yes">Ahí estaré</button>'+
+          '<button type="button" data-v="no">No puedo</button></div>';
+        const btns=row.querySelectorAll('.toggle button');
+        btns.forEach(b=>b.addEventListener('click',()=>{
+          rsvpState[who][evKey]=b.dataset.v;
+          btns.forEach(x=>x.classList.remove('sel-yes','sel-no'));
+          b.classList.add(b.dataset.v==='yes'?'sel-yes':'sel-no');
+          formMsg.textContent='';
+        }));
+        wrap.appendChild(row);
+      });
+      const ally=document.createElement('div'); ally.className='allergy';
+      ally.innerHTML='<span class="ally-lbl">Alergias o restricciones alimentarias</span>'+
+        '<div class="diet-chips" data-who="'+who+'">'+
+          '<button type="button" class="chip" data-val="Celíaco">Celíaco</button>'+
+          '<button type="button" class="chip" data-val="Vegetariano">Vegetariano</button>'+
+          '<button type="button" class="chip" data-val="Vegano">Vegano</button>'+
+        '</div>'+
+        '<input id="otros-'+who+'" class="diet-otros" type="text" placeholder="Otros (alergias, intolerancias…) — opcional">';
+      ally.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+      wrap.appendChild(ally);
+      return wrap;
+    }
+
+    function buildForm(g){
+      peopleContainer.innerHTML=''; rsvpState={};
+      g.members.forEach((m,i)=>{
+        const who='p'+i;
+        peopleContainer.appendChild(personBlock(m.invitado, who, { civil:m.civil, casamiento:m.casamiento }, m.esPlusUno));
+      });
+    }
+
+    /* URL del Web App de Google Apps Script (ver archivo apps-script-backend.gs).
+ (ver archivo apps-script-backend.gs).
+       Pegá acá la URL que te da Google al hacer "Implementar > Nueva implementación"
+       (termina en /exec). Dejalo vacío ("") para modo demo: no guarda nada,
+       no chequea confirmaciones previas, y solo muestra el resumen en pantalla. */
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
+
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      for(const who in rsvpState){
+        for(const ev in rsvpState[who]){
+          if(rsvpState[who][ev]===null){ formMsg.textContent='Falta responder si asistís a cada evento.'; return; }
+        }
+      }
+      const email=(document.getElementById('rsvpEmail')?.value||'').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        formMsg.textContent='Dejanos un email válido para enviarte los detalles.'; return;
+      }
+      const payload=buildPayload();
+      sendRSVP(payload);
+    });
+
+    async function sendRSVP(payload){
+      if(!RSVP_ENDPOINT){ console.log('RSVP (demo, sin backend) →', payload); showDone(payload); return; }
+      const btn=document.getElementById('submitBtn'); const prev=btn.textContent;
+      btn.disabled=true; btn.textContent='Enviando…'; formMsg.textContent='';
+      try{
+        await fetch(RSVP_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        showDone(payload);
+      }catch(err){
+        formMsg.textContent='No pudimos enviar la confirmación. Probá de nuevo o escribinos.';
+      }finally{
+        btn.disabled=false; btn.textContent=prev;
+      }
+    }
+
+    function dietString(who){
+      const chips=[...document.querySelectorAll('.diet-chips[data-who="'+who+'"] .chip.on')].map(c=>c.dataset.val);
+      const otros=(document.getElementById('otros-'+who)?.value||'').trim();
+      if(otros) chips.push(otros);
+      return chips.join(', ');
+    }
+
+    function buildPayload(){
+      const g=selectedGuest;
+      const out={ invitado:g.titular, email:(document.getElementById('rsvpEmail')?.value||'').trim(),
+                  respuestas:{}, alergias:{}, enviado:new Date().toISOString() };
+      g.members.forEach((m,i)=>{
+        const who='p'+i;
+        out.respuestas[m.invitado]=rsvpState[who];
+        out.alergias[m.invitado]=dietString(who);
+      });
+      return out;
+    }
+
+    function showDone(payload){
+      form.classList.remove('open');
+      const sv=document.getElementById('summaryView'); sv.innerHTML='';
+      for(const person in payload.respuestas){
+        const evs=payload.respuestas[person];
+        const parts=Object.entries(evs).map(([k,v])=>EVENTOS[k].nombre+': '+(v==='yes'?'✓ Asiste':'✗ No Asiste'));
+        const pEl=document.createElement('div'); pEl.className='s-person'; pEl.textContent=person;
+        const lEl=document.createElement('div'); lEl.className='s-line'; lEl.textContent=parts.join(' · ');
+        sv.appendChild(pEl); sv.appendChild(lEl);
+        const al=payload.alergias[person];
+        if(al){ const aEl=document.createElement('div'); aEl.className='s-ally'; aEl.textContent='Alergias: '+al; sv.appendChild(aEl); }
+      }
+      document.getElementById('doneMsg').textContent = payload.email
+        ? ('Te enviamos un mail a '+payload.email+' con la confirmación y todos los detalles.')
+        : 'Recibimos tu confirmación. ¡Nos vemos pronto!';
+      // Actualizamos el mapa en memoria para que, si buscás tu nombre de nuevo
+      // en la misma visita, ya figure como confirmado sin esperar al servidor.
+      if(CONFIRMADOS) CONFIRMADOS.set(norm(payload.invitado), { titular:payload.invitado, fecha:payload.enviado });
+      done.classList.add('open');
+      document.getElementById('rsvp').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    document.getElementById('changeNameBtn').addEventListener('click',resetSearch);
+    document.getElementById('againBtn').addEventListener('click',resetSearch);
+
+    // Botones "Copiar" de alias / CBU
+    document.querySelectorAll('.copy-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        const txt=btn.getAttribute('data-copy')||'';
+        const done=()=>{ const o=btn.textContent; btn.textContent='¡Copiado!'; btn.classList.add('ok');
+          setTimeout(()=>{ btn.textContent=o; btn.classList.remove('ok'); },1600); };
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(txt).then(done).catch(done);
+        } else {
+          const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+          ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done();
+        }
+      });
+    });
+
+    function resetSearch(){
+      input.value=''; clearBtn.style.display='none';
+      selectedGuest=null; rsvpState={}; peopleContainer.innerHTML='';
+      const em=document.getElementById('rsvpEmail'); if(em) em.value='';
+      form.classList.remove('open'); form.style.display=''; done.classList.remove('open');
+      already.classList.remove('open'); already.style.display='none';
+      searchStep.style.display='block'; formMsg.textContent=''; closeSugg();
+      input.focus();
+    }
+  })();
+</script>
+</body>
+</html>
