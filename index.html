@@ -326,6 +326,20 @@
   }
   .travel-item p{font-size:.98rem;margin-bottom:.7em}
   .travel-item strong{font-weight:500;color:var(--bordo)}
+  .promo-line{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    margin-top:10px;font-size:.92rem;
+  }
+  .promo-code{
+    font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;font-size:.88rem;
+    background:var(--crema);border:1px solid var(--linea);padding:4px 9px;color:var(--bordo-tinta);
+  }
+  .promo-line .copy-btn{
+    background:none;border:1px solid var(--rosa);color:var(--bordo);
+    cursor:pointer;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;padding:5px 9px;
+  }
+  .promo-line .copy-btn:hover{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
+  .promo-line .copy-btn.ok{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
 
   /* ---------- CLOSING ---------- */
   .closing{
@@ -533,9 +547,20 @@
     font-style:italic;font-size:1.15rem;color:var(--bordo-tinta);line-height:1.5}
   .gift-card{
     background:var(--crema-claro);border:1px solid var(--linea);border-left:4px solid var(--bordo);
-    padding:24px 26px;max-width:520px;margin:0 auto;text-align:left;
+    padding:24px 26px;max-width:520px;margin:16px auto 0;text-align:left;
+    display:none;
   }
+  .gift-card.open{display:block}
   .gift-card .gift-sub{margin:18px 0 4px;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--rosa)}
+  .gift-card .gift-sub:first-child{margin-top:0}
+  .gift-reveal{text-align:center;margin-top:22px}
+  .gift-toggle{
+    display:inline-block;background:none;border:none;cursor:pointer;
+    color:var(--bordo);font-size:.8rem;text-transform:uppercase;
+    letter-spacing:.16em;text-decoration:none;border-bottom:1px solid var(--bordo);
+    padding:2px 0 4px;font-family:inherit;
+  }
+  .gift-toggle:hover{opacity:.75}
   .gift-line{
     display:flex;align-items:center;justify-content:space-between;gap:10px;
     background:var(--crema);border:1px solid var(--linea);padding:9px 12px;margin-top:8px;
@@ -678,7 +703,7 @@
         <span class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11.5c-.3 4 -.4 15 0 21 .1 1.2 1 2 2.2 2.1 6.7.4 14.6.4 21.5 0 1.2-.1 2-.9 2.1-2.1.4-6 .3-16 0-21-.1-1.1-.9-1.9-2-2-6.8-.5-15-.5-21.8 0-1.1.1-1.9.8-2 2z"/><path d="M6.8 18.3c8.5.5 18 .5 26.5 0"/><path d="M13.5 6.5c-.2 2-.2 4 0 6.2M26.7 6.5c-.2 2-.2 4 0 6.2"/><path d="M20 25c-1.3-1.7-4.2-1-4.2 1.3 0 1.9 2.7 3.6 4.2 4.5 1.5-.9 4.2-2.6 4.2-4.5 0-2.3-2.9-3-4.2-1.3z"/></svg></span>
         <h3>Cuándo</h3>
         <div class="big" style="font-size:1.5rem">7 de Diciembre 2026</div>
-        <p class="info-line">Lunes · 17:30 hs</p>
+        <p class="info-line">Lunes · 17:00 hs</p>
       </div>
       <div class="card reveal">
         <span class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="24" r="9"/><circle cx="25" cy="24" r="9"/><path d="M11.5 15.8 15 9l3.5 6.8M21.5 15.8 25 9l3.5 6.8"/></svg></span>
@@ -709,6 +734,7 @@
       <div class="travel-item reveal">
         <h3>Dónde quedarse</h3>
         <p><a href="https://www.casasurhotel.com/" target="_blank" rel="noopener"><strong>Hotel Casa Sur Bellini</strong></a> — Cabello 3780, C1425 Cdad. Autónoma de Buenos Aires.</p>
+        <p class="promo-line">Código de descuento: <span class="promo-code">BODAEUGEYSANTI</span><button type="button" class="copy-btn" data-copy="BODAEUGEYSANTI">Copiar</button></p>
       </div>
     </div>
   </div>
@@ -753,6 +779,11 @@
         <p class="email-hint">Te enviamos la confirmación y todos los detalles (dirección y horarios) a este correo.</p>
         <input id="rsvpEmail" type="email" autocomplete="email" inputmode="email" placeholder="tunombre@email.com">
       </div>
+      <div class="email-block">
+        <label class="ally-lbl" for="rsvpWhatsapp">Tu WhatsApp</label>
+        <p class="email-hint">Por si necesitamos contactarte por cualquier novedad de último momento.</p>
+        <input id="rsvpWhatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234-5678">
+      </div>
       <div class="submit-row">
         <button type="submit" class="rsvp-btn" id="submitBtn">Enviar confirmación</button>
         <p class="form-msg" id="formMsg"></p>
@@ -774,7 +805,7 @@
             <h4>El Civil</h4>
           </div>
           <div class="ic-row"><span class="ic-lbl">Fecha</span><span class="ic-val"><strong>Viernes 4 de diciembre de 2026</strong></span></div>
-          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">17:00 hs</span></div>
+          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">Horario a confirmar</span></div>
           <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Registro Civil Uruguay<br><a class="maplink" href="https://maps.app.goo.gl/Ms7mKSfeqXU8rexC8" target="_blank" rel="noopener">Ver en el mapa</a></span></div>
         </div>
 
@@ -796,7 +827,7 @@
             <h4>Casamiento</h4>
           </div>
           <div class="ic-row"><span class="ic-lbl">Fecha</span><span class="ic-val"><strong>Lunes 7 de diciembre de 2026</strong></span></div>
-          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">17:30 hs</span></div>
+          <div class="ic-row"><span class="ic-lbl">Hora</span><span class="ic-val">17:00 hs</span></div>
           <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Rüt Haus<br><a class="maplink" href="https://maps.app.goo.gl/TAhfCKJMXK8HqpZK8" target="_blank" rel="noopener">Ver en el mapa</a></span></div>
         </div>
       </div>
@@ -811,13 +842,16 @@
   <div class="wrap">
     <h2 class="section-title reveal">Regalos</h2>
     <p class="gift-intro reveal">El mejor regalo es compartir este día con vos, pero si querés ayudarnos con la luna de miel, dejamos nuestros datos a continuación</p>
-    <div class="gift-card reveal">
-      <p class="gift-sub">Transferencia en pesos/dólares</p>
-      <div class="gift-line"><span class="gift-lbl">Alias</span><span class="gift-val">santiyeuge</span><button type="button" class="copy-btn" data-copy="santiyeuge">Copiar</button></div>
-      <div class="gift-line"><span class="gift-lbl">CBU</span><span class="gift-val">0720000788000022629986</span><button type="button" class="copy-btn" data-copy="0720000788000022629986">Copiar</button></div>
-      <div class="gift-line"><span class="gift-lbl">Titular</span><span class="gift-val">Eugenia Medone</span><button type="button" class="copy-btn" data-copy="Eugenia Medone">Copiar</button></div>
-      <p class="gift-sub">Transferencia en USA</p>
-      <div class="gift-line"><span class="gift-lbl">Zelle</span><span class="gift-val">santiagopelaez94@gmail.com</span><button type="button" class="copy-btn" data-copy="santiagopelaez94@gmail.com">Copiar</button></div>
+    <div class="gift-reveal reveal">
+      <button type="button" class="gift-toggle" id="giftToggle">Ver datos para transferencia</button>
+      <div class="gift-card" id="giftCard">
+        <p class="gift-sub">Transferencia en pesos/dólares</p>
+        <div class="gift-line"><span class="gift-lbl">Alias</span><span class="gift-val">santiyeuge</span><button type="button" class="copy-btn" data-copy="santiyeuge">Copiar</button></div>
+        <div class="gift-line"><span class="gift-lbl">CBU</span><span class="gift-val">0720000788000022629986</span><button type="button" class="copy-btn" data-copy="0720000788000022629986">Copiar</button></div>
+        <div class="gift-line"><span class="gift-lbl">Titular</span><span class="gift-val">Eugenia Medone</span><button type="button" class="copy-btn" data-copy="Eugenia Medone">Copiar</button></div>
+        <p class="gift-sub">Transferencia en USA</p>
+        <div class="gift-line"><span class="gift-lbl">Zelle</span><span class="gift-val">santiagopelaez94@gmail.com</span><button type="button" class="copy-btn" data-copy="santiagopelaez94@gmail.com">Copiar</button></div>
+      </div>
     </div>
   </div>
 </section>
@@ -848,7 +882,7 @@
 <script>
   // Countdown
   (function(){
-    const target = new Date("2026-12-07T18:00:00-03:00").getTime();
+    const target = new Date("2026-12-07T17:00:00-03:00").getTime();
     const dEl=document.getElementById('cd-days'),hEl=document.getElementById('cd-hours'),
           mEl=document.getElementById('cd-mins'),sEl=document.getElementById('cd-secs');
     function tick(){
@@ -909,8 +943,8 @@
 
   /* Datos de los eventos (editá horarios/lugares) */
   const EVENTOS = {
-    civil:      { nombre:"Civil",      meta:"Vie 4 dic 2026 · 17:00 · Registro Civil Uruguay" },
-    casamiento: { nombre:"Casamiento", meta:"Lunes 7 DIC 2026 · 17:30 · Rüt Haus" },
+    civil:      { nombre:"Civil",      meta:"Vie 4 dic 2026 · Horario a confirmar · Registro Civil Uruguay" },
+    casamiento: { nombre:"Casamiento", meta:"Lunes 7 DIC 2026 · 17:00 · Rüt Haus" },
   };
 
   /* ---------- Lógica ---------- */
@@ -1265,7 +1299,9 @@
 
     function buildPayload(){
       const g=selectedGuest;
-      const out={ invitado:g.titular, email:(document.getElementById('rsvpEmail')?.value||'').trim(),
+      const out={ invitado:g.titular,
+                  email:(document.getElementById('rsvpEmail')?.value||'').trim(),
+                  whatsapp:(document.getElementById('rsvpWhatsapp')?.value||'').trim(),
                   respuestas:{}, alergias:{}, enviado:new Date().toISOString() };
       g.members.forEach((m,i)=>{
         const who='p'+i;
@@ -1315,10 +1351,22 @@
       });
     });
 
+    // Mostrar/ocultar los datos de transferencia en "Regalos"
+    (function(){
+      const btn = document.getElementById('giftToggle');
+      const card = document.getElementById('giftCard');
+      if(!btn || !card) return;
+      btn.addEventListener('click', function(){
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Ocultar datos' : 'Ver datos para transferencia';
+      });
+    })();
+
     function resetSearch(){
       input.value=''; clearBtn.style.display='none';
       selectedGuest=null; rsvpState={}; peopleContainer.innerHTML='';
       const em=document.getElementById('rsvpEmail'); if(em) em.value='';
+      const wa=document.getElementById('rsvpWhatsapp'); if(wa) wa.value='';
       form.classList.remove('open'); form.style.display=''; done.classList.remove('open');
       already.classList.remove('open'); already.style.display='none';
       searchStep.style.display='block'; formMsg.textContent=''; closeSugg();
