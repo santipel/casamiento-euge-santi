@@ -798,8 +798,8 @@
       <div class="summary" id="summaryView"></div>
 
       <div class="after-cards">
-        <!-- Info del Civil -->
-        <div class="info-card">
+        <!-- Info del Civil (solo se muestra si alguien del grupo confirmó que va) -->
+        <div class="info-card" id="civilInfoCard">
           <div class="ic-head">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 15.5c-4.6.1-8.2 3.9-8 8.5.2 4.4 3.9 7.8 8.3 7.6 4.4-.2 7.8-3.9 7.6-8.3-.2-4.3-3.7-7.7-7.9-7.8z"/><path d="M24 15.5c4.6.1 8.2 3.9 8 8.5-.2 4.4-3.9 7.8-8.3 7.6-1.6-.1-3-.6-4.2-1.5"/><path d="M20 15l-2.6-4.2c-.3-.5-.1-1 .4-1.3 1.4-.6 3-.6 4.4 0 .5.2.7.8.4 1.3L20 15z"/><path d="M20 5.5l.9 1.8 1.8.9-1.8.9-.9 1.8-.9-1.8-1.8-.9 1.8-.9z" fill="currentColor" stroke="none"/></svg>
             <h4>El Civil</h4>
@@ -809,8 +809,8 @@
           <div class="ic-row"><span class="ic-lbl">Lugar</span><span class="ic-val">Registro Civil Uruguay<br><a class="maplink" href="https://maps.app.goo.gl/Ms7mKSfeqXU8rexC8" target="_blank" rel="noopener">Ver en el mapa</a></span></div>
         </div>
 
-        <!-- Info del Festejo Civil -->
-        <div class="info-card">
+        <!-- Info del Festejo Civil (mismo criterio que la de arriba) -->
+        <div class="info-card" id="festejoCivilInfoCard">
           <div class="ic-head">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 34V19l10-8 10 8v15"/><path d="M16 34v-9h8v9"/><path d="M6 34h28"/><path d="M14 15.5V11M26 15.5V11M11 11h18" /></svg>
             <h4>Festejo Civil</h4>
@@ -1323,6 +1323,14 @@
         const al=payload.alergias[person];
         if(al){ const aEl=document.createElement('div'); aEl.className='s-ally'; aEl.textContent='Alergias: '+al; sv.appendChild(aEl); }
       }
+      // La info del Civil (y del Festejo Civil, que va junto) solo se muestra si
+      // alguien del grupo estaba INVITADO al Civil (según la planilla) — no importa
+      // si respondió que sí o que no, solo si tenía esa invitación para empezar.
+      const invitadoAlCivil = Object.values(payload.respuestas).some(evs => 'civil' in evs);
+      const civilCard = document.getElementById('civilInfoCard');
+      const festejoCard = document.getElementById('festejoCivilInfoCard');
+      if(civilCard) civilCard.style.display = invitadoAlCivil ? '' : 'none';
+      if(festejoCard) festejoCard.style.display = invitadoAlCivil ? '' : 'none';
       document.getElementById('doneMsg').textContent = payload.email
         ? ('Te enviamos un mail a '+payload.email+' con la confirmación y todos los detalles.')
         : 'Recibimos tu confirmación. ¡Nos vemos pronto!';
