@@ -182,19 +182,9 @@
     position:relative;width:100%;height:100%;object-fit:cover;display:block;z-index:1;
     transition:transform .55s ease;
   }
-  .st-node .st-photo-inner .st-ph{
-    position:absolute;top:9px;right:9px;bottom:9px;left:9px;z-index:1;
-  }
   .st-node .st-text{margin-bottom:14px;text-align:right}
   .story-row.reverse .st-text{text-align:left}
 
-  .st-ph{
-    position:absolute;top:9px;right:9px;bottom:9px;left:9px;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;gap:9px;text-align:center;padding:14px;
-  }
-  .st-ph svg{width:34px;height:34px;color:var(--bordo);opacity:.45}
-  .st-ph .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--rosa)}
-  .st-ph .sub{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.02em;color:var(--rosa-suave)}
   /* La fecha usa ahora la tipografía que antes era del título (h3) */
   .st-node .st-eyebrow{
     font-family:'Cormorant',serif;font-weight:600;font-style:normal;
@@ -475,11 +465,12 @@
   }
   #rsvp .email-block .ally-lbl{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--rosa);margin-bottom:4px;display:block}
   #rsvp .email-block .email-hint{font-size:.92rem;font-weight:500;color:var(--rosa);margin:0 0 12px}
-  #rsvp .email-block input{
+  #rsvp .email-block input,#rsvp .email-block textarea{
     width:100%;font-family:'Josefin Sans';font-weight:300;font-size:1.05rem;color:var(--bordo-tinta);
     background:var(--crema-papel);border:1px solid var(--linea);padding:12px 14px;outline:none;
   }
-  #rsvp .email-block input:focus{border-color:var(--bordo)}
+  #rsvp .email-block textarea{resize:vertical;min-height:80px;font-family:inherit}
+  #rsvp .email-block input:focus,#rsvp .email-block textarea:focus{border-color:var(--bordo)}
   #rsvp .rsvp-btn{
     display:inline-block;background:var(--bordo);color:var(--crema-papel);
     border:1px solid var(--bordo);cursor:pointer;
@@ -529,18 +520,6 @@
     text-transform:uppercase;letter-spacing:.12em;color:var(--bordo);
     border-bottom:1px solid var(--rosa);padding-bottom:1px}
   #rsvp .info-card .maplink:hover{border-color:var(--bordo)}
-  #rsvp .info-card .ic-note{font-size:.82rem;color:var(--rosa);margin-top:12px;font-style:italic}
-  /* fila copiable de datos bancarios */
-  #rsvp .cbu-line{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    background:var(--crema);border:1px solid var(--linea);padding:9px 12px;margin-top:6px;
-  }
-  #rsvp .cbu-line .cbu-val{font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
-    font-size:.9rem;color:var(--bordo-tinta);word-break:break-all}
-  #rsvp .cbu-line .copy-btn{flex:none;background:none;border:1px solid var(--rosa);color:var(--bordo);
-    cursor:pointer;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;padding:5px 9px}
-  #rsvp .cbu-line .copy-btn:hover{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
-  #rsvp .cbu-line .copy-btn.ok{background:var(--bordo);color:var(--crema-papel);border-color:var(--bordo)}
 
   /* ---------- REGALOS ---------- */
   .gift-intro{text-align:center;max-width:560px;margin:-18px auto 34px;font-family:'Cormorant',serif;
@@ -586,9 +565,9 @@
     <a href="#historia">Nuestra historia</a>
     <a href="#detalles">El gran día</a>
     <a href="#viaje">Cómo llegar</a>
+    <a href="#rsvp">Confirmar</a>
     <a href="#regalos">Regalos</a>
     <a href="#faq">Preguntas</a>
-    <a href="#rsvp">Confirmar</a>
   </div>
 </nav>
 
@@ -625,8 +604,7 @@
           </div>
           <figure class="st-photo">
             <div class="st-photo-inner">
-              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 1</span></div>
-              <img src="imagenes/foto-ciudad.jpg" alt="Euge y Santi abrazados en la oficina donde se conocieron" loading="lazy" onerror="this.style.display='none'">
+              <img src="imagenes/foto-ciudad.jpg" alt="Euge y Santi abrazados en la oficina donde se conocieron" loading="lazy">
             </div>
           </figure>
         </div>
@@ -644,8 +622,7 @@
           </div>
           <figure class="st-photo">
             <div class="st-photo-inner">
-              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 2</span></div>
-              <img src="imagenes/foto-avion.jpg" alt="Euge y Santi en Washington Square, Nueva York" loading="lazy" onerror="this.style.display='none'">
+              <img src="imagenes/foto-avion.jpg" alt="Euge y Santi en Washington Square, Nueva York" loading="lazy">
             </div>
           </figure>
         </div>
@@ -681,8 +658,7 @@
           </div>
           <figure class="st-photo">
             <div class="st-photo-inner">
-              <div class="st-ph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="12" width="30" height="21" rx="3"/><path d="M14 12l2.5-4h7l2.5 4"/><circle cx="20" cy="22" r="6"/></svg><span class="lbl">Foto 4</span></div>
-              <img src="imagenes/foto-anillo.jpg" alt="Euge y Santi la noche de la propuesta, mostrando el anillo" loading="lazy" onerror="this.style.display='none'">
+              <img src="imagenes/foto-anillo.jpg" alt="Euge y Santi la noche de la propuesta, mostrando el anillo" loading="lazy">
             </div>
           </figure>
         </div>
@@ -742,7 +718,8 @@
 
 <!-- RSVP -->
 <section id="rsvp">
-  <h2 class="section-title reveal">Confirmá tu asistencia</h2>
+  <h2 class="section-title reveal" style="margin-bottom:14px">Confirmá tu asistencia</h2>
+  <p class="section-eyebrow reveal" style="margin-bottom:clamp(30px,6vw,50px)">Confirmanos antes del <strong>1 de octubre</strong></p>
 
   <div class="rsvp-panel reveal">
     <!-- Paso 1: buscador -->
@@ -774,6 +751,16 @@
         <button type="button" class="change-btn" id="changeNameBtn">← No soy yo, cambiar</button>
       </div>
       <div id="peopleContainer"></div>
+      <div class="email-block">
+        <label class="ally-lbl" for="rsvpCancion">Una canción que no puede faltar <span style="text-transform:none;letter-spacing:.05em;font-weight:400">(opcional)</span></label>
+        <p class="email-hint">Ayudanos a armar la playlist con eso que no puede faltar en la fiesta.</p>
+        <input id="rsvpCancion" type="text" autocomplete="off" placeholder="Nombre de la canción / artista">
+      </div>
+      <div class="email-block">
+        <label class="ally-lbl" for="rsvpMensaje">Un mensaje para los novios <span style="text-transform:none;letter-spacing:.05em;font-weight:400">(opcional)</span></label>
+        <p class="email-hint">Si querés, dejanos unas palabras. Nos encantaría leerlas!</p>
+        <textarea id="rsvpMensaje" rows="3" placeholder="Escribinos lo que quieras…"></textarea>
+      </div>
       <div class="email-block">
         <label class="ally-lbl" for="rsvpEmail">Tu email</label>
         <p class="email-hint">Te enviamos la confirmación y todos los detalles (dirección y horarios) a este correo.</p>
@@ -861,7 +848,7 @@
   <div class="wrap">
     <h2 class="section-title reveal">Preguntas frecuentes</h2>
     <div class="faq-list">
-      <details class="reveal"><summary>¿Hasta cuándo puedo confirmar?</summary><div class="faq-answer">En lo posible, antes del 30 de Septiembre, si tenés cualquier duda o tema particular escribinos para tenerlo en cuenta!</div></details>
+      <details class="reveal"><summary>¿Hasta cuándo puedo confirmar?</summary><div class="faq-answer">Podés confirmar hasta el <strong>1 de octubre</strong>. Si tenés cualquier duda o tema particular escribinos para tenerlo en cuenta!</div></details>
       <details class="reveal"><summary>¿Puedo llevar acompañante?</summary><div class="faq-answer">Al escribir tu nombre en la confirmación, podrás ver tus acompañantes invitados, Ante la duda, escribinos y lo vemos juntos!</div></details>
       <details class="reveal"><summary>¿Cuál es el dress code?</summary><div class="faq-answer">Elegante / formal. Traje, corbata, vestidos y sus mejores looks, más es más!</div></details>
     </div>
@@ -929,17 +916,20 @@
           apps-script-doGet-invitados.gs para pegar/combinar con tu doGet.
        3) Volvé a "Implementar > Nueva implementación" (o "Administrar
           implementaciones > Editar") para que el cambio quede publicado.
-       4) Pegá esa misma URL (termina en /exec) en INVITADOS_ENDPOINT.
-     Si INVITADOS_ENDPOINT queda vacío (""), la búsqueda de invitados no
+       4) Pegá esa misma URL (termina en /exec) en APPS_SCRIPT_ENDPOINT.
+     Si APPS_SCRIPT_ENDPOINT queda vacío (""), la búsqueda de invitados no
      va a poder mostrar resultados. La base de invitados vive únicamente
      en el Google Sheet — nunca queda una copia de nombres en este archivo.
      Si está completo, la página lo trae apenas carga, arma la
      base actualizada y la guarda en caché local (localStorage) por si en
      la próxima visita no hay conexión — así siempre queda una copia usable.
      ============================================================ */
-  // Poné acá la URL de tu Web App de Apps Script (la misma que RSVP_ENDPOINT,
-  // si el doGet vive en el mismo proyecto).
-  const INVITADOS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
+  // URL única de tu Web App de Apps Script — se usa para todo:
+  //   - GET ?accion=invitados     -> lista de invitados para el buscador
+  //   - GET ?accion=confirmados   -> quiénes ya confirmaron
+  //   - GET ?nombre=...            -> chequeo puntual de una persona
+  //   - POST                       -> guardar una confirmación nueva
+  const APPS_SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
 
   /* Datos de los eventos (editá horarios/lugares) */
   const EVENTOS = {
@@ -1009,12 +999,12 @@
     // Al abrir: usamos caché (si hay) mientras llega la versión más nueva
     // desde tu Apps Script. Si todavía no hay caché ni respuesta, arrancamos
     // con la lista vacía (nunca hay nombres reales guardados en este archivo).
-    let GRUPOS = loadCache() || buildGroups([]);
+    let GRUPOS = loadCache() || [];
 
     function refreshFromSheet(){
-      if(!INVITADOS_ENDPOINT) return;
-      const sep = INVITADOS_ENDPOINT.includes('?') ? '&' : '?';
-      const url = INVITADOS_ENDPOINT + sep + 'accion=invitados';
+      if(!APPS_SCRIPT_ENDPOINT) return;
+      const sep = APPS_SCRIPT_ENDPOINT.includes('?') ? '&' : '?';
+      const url = APPS_SCRIPT_ENDPOINT + sep + 'accion=invitados';
       fetch(url, { cache:'no-store' })
         .then(r => {
           if(!r.ok) throw new Error('HTTP ' + r.status + ' al pedir ' + url);
@@ -1050,9 +1040,9 @@
     let CONFIRMADOS = null; // null = todavía no cargó; Map = ya está lista
 
     function refreshConfirmados(){
-      if(!INVITADOS_ENDPOINT) { CONFIRMADOS = new Map(); return; }
-      const sep = INVITADOS_ENDPOINT.includes('?') ? '&' : '?';
-      const url = INVITADOS_ENDPOINT + sep + 'accion=confirmados';
+      if(!APPS_SCRIPT_ENDPOINT) { CONFIRMADOS = new Map(); return; }
+      const sep = APPS_SCRIPT_ENDPOINT.includes('?') ? '&' : '?';
+      const url = APPS_SCRIPT_ENDPOINT + sep + 'accion=confirmados';
       fetch(url, { cache:'no-store' })
         .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
         .then(rawRows => {
@@ -1153,7 +1143,7 @@
       already.classList.remove('open');
       already.style.display='none';
 
-      if(RSVP_ENDPOINT){
+      if(APPS_SCRIPT_ENDPOINT){
         if(CONFIRMADOS){
           // Ya tenemos las confirmaciones precargadas: respondemos al toque, sin red.
           const hit = CONFIRMADOS.get(norm(group.titular));
@@ -1183,7 +1173,7 @@
     }
 
     async function checkGuestStatus(nombre){
-      const url = RSVP_ENDPOINT + '?nombre=' + encodeURIComponent(nombre);
+      const url = APPS_SCRIPT_ENDPOINT + '?nombre=' + encodeURIComponent(nombre);
       const res = await fetch(url);
       return res.json();
     }
@@ -1208,10 +1198,10 @@
       formMsg.textContent='';
     });
 
-    function personBlock(name,who,evts,isPlusUno){
+    function personBlock(name,who,evts){
       rsvpState[who]={};
       const wrap=document.createElement('div');
-      wrap.className='person'+(isPlusUno?' plus':'');
+      wrap.className='person';
       const invited = Object.entries(evts).filter(([k,v])=>v).map(([k])=>k);
       const evLabels = invited.map(k=>EVENTOS[k].nombre).join(' y ');
       wrap.innerHTML = '<div class="person-name">'+name+'</div>'+
@@ -1250,16 +1240,12 @@
       peopleContainer.innerHTML=''; rsvpState={};
       g.members.forEach((m,i)=>{
         const who='p'+i;
-        peopleContainer.appendChild(personBlock(m.invitado, who, { civil:m.civil, casamiento:m.casamiento }, m.esPlusUno));
+        peopleContainer.appendChild(personBlock(m.invitado, who, { civil:m.civil, casamiento:m.casamiento }));
       });
     }
 
-    /* URL del Web App de Google Apps Script (ver archivo apps-script-backend.gs).
- (ver archivo apps-script-backend.gs).
-       Pegá acá la URL que te da Google al hacer "Implementar > Nueva implementación"
-       (termina en /exec). Dejalo vacío ("") para modo demo: no guarda nada,
-       no chequea confirmaciones previas, y solo muestra el resumen en pantalla. */
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzvnGiT7Ea1RSZJUxmoSyKvl6AxUuMpoPziuxa56VoM3JY8ofnq7Y_cKg44iIAy1BdP/exec";
+    /* Nota: el endpoint del backend está definido más arriba en el archivo
+       como APPS_SCRIPT_ENDPOINT (unificado para GET y POST). */
 
     form.addEventListener('submit',e=>{
       e.preventDefault();
@@ -1277,11 +1263,11 @@
     });
 
     async function sendRSVP(payload){
-      if(!RSVP_ENDPOINT){ console.log('RSVP (demo, sin backend) →', payload); showDone(payload); return; }
+      if(!APPS_SCRIPT_ENDPOINT){ console.log('RSVP (demo, sin backend) →', payload); showDone(payload); return; }
       const btn=document.getElementById('submitBtn'); const prev=btn.textContent;
       btn.disabled=true; btn.textContent='Enviando…'; formMsg.textContent='';
       try{
-        await fetch(RSVP_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        await fetch(APPS_SCRIPT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
         showDone(payload);
       }catch(err){
         formMsg.textContent='No pudimos enviar la confirmación. Probá de nuevo o escribinos.';
@@ -1302,6 +1288,8 @@
       const out={ invitado:g.titular,
                   email:(document.getElementById('rsvpEmail')?.value||'').trim(),
                   whatsapp:(document.getElementById('rsvpWhatsapp')?.value||'').trim(),
+                  cancion:(document.getElementById('rsvpCancion')?.value||'').trim(),
+                  mensaje:(document.getElementById('rsvpMensaje')?.value||'').trim(),
                   respuestas:{}, alergias:{}, enviado:new Date().toISOString() };
       g.members.forEach((m,i)=>{
         const who='p'+i;
@@ -1375,6 +1363,8 @@
       selectedGuest=null; rsvpState={}; peopleContainer.innerHTML='';
       const em=document.getElementById('rsvpEmail'); if(em) em.value='';
       const wa=document.getElementById('rsvpWhatsapp'); if(wa) wa.value='';
+      const cn=document.getElementById('rsvpCancion'); if(cn) cn.value='';
+      const mn=document.getElementById('rsvpMensaje'); if(mn) mn.value='';
       form.classList.remove('open'); form.style.display=''; done.classList.remove('open');
       already.classList.remove('open'); already.style.display='none';
       searchStep.style.display='block'; formMsg.textContent=''; closeSugg();
