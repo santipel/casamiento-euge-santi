@@ -752,23 +752,18 @@
       </div>
       <div id="peopleContainer"></div>
       <div class="email-block">
-        <label class="ally-lbl" for="rsvpCancion">Una canción que no puede faltar <span style="text-transform:none;letter-spacing:.05em;font-weight:400">(opcional)</span></label>
-        <p class="email-hint">Ayudanos a armar la playlist con eso que no puede faltar en la fiesta.</p>
-        <input id="rsvpCancion" type="text" autocomplete="off" placeholder="Nombre de la canción / artista">
-      </div>
-      <div class="email-block">
         <label class="ally-lbl" for="rsvpMensaje">Un mensaje para los novios <span style="text-transform:none;letter-spacing:.05em;font-weight:400">(opcional)</span></label>
         <p class="email-hint">Si querés, dejanos unas palabras. Nos encantaría leerlas!</p>
         <textarea id="rsvpMensaje" rows="3" placeholder="Escribinos lo que quieras…"></textarea>
       </div>
       <div class="email-block">
         <label class="ally-lbl" for="rsvpEmail">Tu email</label>
-        <p class="email-hint">Te enviamos la confirmación y todos los detalles (dirección y horarios) a este correo.</p>
+        <p class="email-hint">Te enviamos la confirmación y todos los detalles del evento a este mail</p>
         <input id="rsvpEmail" type="email" autocomplete="email" inputmode="email" placeholder="tunombre@email.com">
       </div>
       <div class="email-block">
         <label class="ally-lbl" for="rsvpWhatsapp">Tu WhatsApp</label>
-        <p class="email-hint">Por si necesitamos contactarte por cualquier novedad de último momento.</p>
+        <p class="email-hint">Por si necesitamos contactarte por cualquier novedad de último momento (Por favor agregar prefijo!)</p>
         <input id="rsvpWhatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234-5678">
       </div>
       <div class="submit-row">
@@ -1288,7 +1283,6 @@
       const out={ invitado:g.titular,
                   email:(document.getElementById('rsvpEmail')?.value||'').trim(),
                   whatsapp:(document.getElementById('rsvpWhatsapp')?.value||'').trim(),
-                  cancion:(document.getElementById('rsvpCancion')?.value||'').trim(),
                   mensaje:(document.getElementById('rsvpMensaje')?.value||'').trim(),
                   respuestas:{}, alergias:{}, enviado:new Date().toISOString() };
       g.members.forEach((m,i)=>{
@@ -1363,7 +1357,6 @@
       selectedGuest=null; rsvpState={}; peopleContainer.innerHTML='';
       const em=document.getElementById('rsvpEmail'); if(em) em.value='';
       const wa=document.getElementById('rsvpWhatsapp'); if(wa) wa.value='';
-      const cn=document.getElementById('rsvpCancion'); if(cn) cn.value='';
       const mn=document.getElementById('rsvpMensaje'); if(mn) mn.value='';
       form.classList.remove('open'); form.style.display=''; done.classList.remove('open');
       already.classList.remove('open'); already.style.display='none';
