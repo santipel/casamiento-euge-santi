@@ -559,7 +559,7 @@
   <div class="nav-inner">
     <a href="#historia">Nuestra historia</a>
     <a href="#detalles">El gran día</a>
-    <a href="#viaje">Cómo llegar</a>
+    <a href="#viaje">Información</a>
     <a href="#rsvp">RSVP</a>
     <a href="#regalos">Regalos</a>
     <a href="#faq">Preguntas</a>
@@ -715,7 +715,7 @@
 <!-- RSVP -->
 <section id="rsvp">
   <h2 class="section-title reveal" style="margin-bottom:14px">Confirmá tu asistencia</h2>
-  <p class="section-eyebrow reveal" style="margin-bottom:clamp(30px,6vw,50px)">Por favor confirmar antes del <strong>1ro de octubre</strong></p>
+  <p class="section-eyebrow reveal" style="margin-bottom:clamp(30px,6vw,50px)">Por favor confirmar antes del <strong>1<sup>ro</sup> de octubre</strong></p>
 
   <div class="rsvp-panel reveal">
     <!-- Paso 1: buscador -->
@@ -848,7 +848,7 @@
     <h2 class="section-title reveal">Preguntas frecuentes</h2>
     <div class="faq-list">
       <details class="reveal"><summary>¿Hasta cuándo puedo confirmar?</summary><div class="faq-answer">Podés confirmar hasta el <strong>1 de octubre</strong>. Si tenés cualquier duda o tema particular escribinos para tenerlo en cuenta!</div></details>
-      <details class="reveal"><summary>¿Puedo llevar acompañante?</summary><div class="faq-answer">Al escribir tu nombre en la confirmación, podrás ver tus acompañantes invitados, Ante la duda, escribinos y lo vemos juntos!</div></details>
+      <details class="reveal"><summary>¿Puedo llevar acompañante?</summary><div class="faq-answer">Al escribir tu nombre en la confirmación, podrás ver tus acompañantes invitados. Ante la duda, escribinos y lo vemos juntos!</div></details>
       <details class="reveal"><summary>¿Cuál es el dress code?</summary><div class="faq-answer">Elegante / formal. Traje, corbata, vestidos y sus mejores looks, más es más!</div></details>
     </div>
   </div>
@@ -1264,7 +1264,12 @@
       const btn=document.getElementById('submitBtn'); const prev=btn.textContent;
       btn.disabled=true; btn.textContent='Enviando…'; formMsg.textContent='';
       try{
-        await fetch(APPS_SCRIPT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        // Le mandamos el origin como parámetro en la URL para que el backend
+        // pueda validar que la petición viene realmente desde nuestra web.
+        // (Apps Script no siempre expone el header "Origin" al script.)
+        const sep = APPS_SCRIPT_ENDPOINT.includes('?') ? '&' : '?';
+        const postUrl = APPS_SCRIPT_ENDPOINT + sep + 'origin=' + encodeURIComponent(window.location.origin);
+        await fetch(postUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
         showDone(payload);
       }catch(err){
         formMsg.textContent='No pudimos enviar la confirmación. Probá de nuevo o escribinos.';
