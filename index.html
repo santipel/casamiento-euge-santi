@@ -1265,7 +1265,15 @@
         // (Apps Script no siempre expone el header "Origin" al script.)
         const sep = APPS_SCRIPT_ENDPOINT.includes('?') ? '&' : '?';
         const postUrl = APPS_SCRIPT_ENDPOINT + sep + 'origin=' + encodeURIComponent(window.location.origin);
-        await fetch(postUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        const res = await fetch(postUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        // El backend siempre responde JSON. Si dice ok:false, mostramos el
+        // motivo real (ej. rate limit) en vez de un genérico "no se pudo".
+        let data = null;
+        try { data = await res.json(); } catch(_) {}
+        if (data && data.ok === false) {
+          formMsg.textContent = data.error || 'No pudimos enviar la confirmación. Probá de nuevo o escribinos.';
+          return;
+        }
         showDone(payload);
       }catch(err){
         formMsg.textContent='No pudimos enviar la confirmación. Probá de nuevo o escribinos.';
